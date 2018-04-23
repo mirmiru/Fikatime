@@ -20,12 +20,20 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     var ref:DatabaseReference!
     var database: DataStorage!
     
+    //Database variables
+    let NODE_CAFES = "cafes"
+    let NODE_RATINGS = "ratings"
+    let NODE_REVIEWS = "reviews"
+    
+    let KEY_NAME = "name"
+    let KEY_USER = "user"       //TODO: Replace with users id
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         database = DataStorage()
         photoButton.roundedButton()
         
-        //ref = Database.database().reference()
+        ref = Database.database().reference()
         
         //CAMERA
         if let image = UIImage(contentsOfFile: cachedImagePath) {
@@ -73,6 +81,22 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     @IBAction func saveButtonClick(_ sender: Any) {
+        
+        //Store unique id for later use AND update database
+        let newCafeRef = ref.child(NODE_CAFES).childByAutoId()
+        newCafeRef.child(KEY_NAME).setValue(nameTextfield.text)
+        print(newCafeRef.key)
+        
+        //Store review
+        ref.child(NODE_REVIEWS).child(newCafeRef.key).child(KEY_USER).setValue("review")
+        
+        //Store rating
+        ref.child(NODE_RATINGS).child(newCafeRef.key).child(KEY_USER).setValue(4.5)
+        
+        //Store photo
+        ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue(<#T##value: Any?##Any?#>)
+        
+        /*
         //let id = ""
         let name = "CafeAwesome"
         let rating = 5
@@ -81,6 +105,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         print(cafe)
         database.saveData(cafe: cafe)
+ */
     }
 
     override func didReceiveMemoryWarning() {

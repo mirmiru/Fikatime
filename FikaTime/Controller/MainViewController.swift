@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,7 +15,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Databasen
     
     //DUMMY DATA
-    let dummydata = ["Cafe Husaren", "Espressohouse Avenyn", "Roots GBG"]
+    let dummydata = [String]()
+    
+    //Firebase
+    var ref: DatabaseReference!
+    var database: DataStorage!
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,8 +28,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
+        ref = Database.database().reference()
     }
     
+    // TODO: Add database listener to update tableview array
     
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +48,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMain")
         cell?.textLabel?.text = dummydata[indexPath.row]
         return cell!
+    }
+    
+    func getTopList() {
+        
     }
 
     /*
