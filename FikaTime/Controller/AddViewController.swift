@@ -1,0 +1,101 @@
+//
+//  AddViewController.swift
+//  FikaTime
+//
+//  Created by Milja V on 2018-04-22.
+//  Copyright © 2018 Milja V. All rights reserved.
+//
+
+import UIKit
+import FirebaseDatabase
+
+class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    @IBOutlet weak var imageImageview: UIImageView!
+    @IBOutlet weak var nameTextfield: UITextField!
+    @IBOutlet weak var reviewTextview: UITextView!
+    @IBOutlet weak var photoButton: UIButton!
+    
+    //Firebase database
+    var ref:DatabaseReference!
+    var database: DataStorage!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        database = DataStorage()
+        photoButton.roundedButton()
+        
+        //ref = Database.database().reference()
+        
+        //CAMERA
+        if let image = UIImage(contentsOfFile: cachedImagePath) {
+            imageImageview.image = image
+        } else {
+            NSLog("No cached image found.")
+        }
+    }
+    
+    var cachedImagePath: String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory.appending("/cached.png")
+    }
+    
+    @IBAction func onPhotoButtonClick(_ sender: Any) {
+        //Take photo/access gallery
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .savedPhotosAlbum
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        imageImageview.image = editedImage
+        
+        if let data = UIImagePNGRepresentation(editedImage) {
+            do {
+                let url = URL(fileURLWithPath: cachedImagePath)
+                try data.write(to: url)
+                photoButton.isHidden = true
+            } catch {
+                NSLog("Write failed.")
+            }
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonClick(_ sender: Any) {
+        //let id = ""
+        let name = "CafeAwesome"
+        let rating = 5
+        let review = "Greeeeat"
+        var cafe = Cafe(name: name, rating: rating, review: review)
+        
+        print(cafe)
+        database.saveData(cafe: cafe)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

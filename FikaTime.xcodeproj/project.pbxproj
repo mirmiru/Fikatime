@@ -7,14 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17AA46CE180FC02C3C7508B2 /* Pods_FikaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */; };
+		A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502BAC72089CFAE009DCD07 /* Cafe.swift */; };
+		A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502BAC92089D102009DCD07 /* DataStorage.swift */; };
+		A502BACC2089E106009DCD07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A502BACB2089E106009DCD07 /* GoogleService-Info.plist */; };
+		A5609C852089E547009A42D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5609C842089E547009A42D5 /* MainViewController.swift */; };
+		A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5609C862089E595009A42D5 /* DetailViewController.swift */; };
 		A5693B1F2084E451005E8F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5693B1E2084E451005E8F44 /* AppDelegate.swift */; };
 		A5693B212084E451005E8F44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5693B202084E451005E8F44 /* ViewController.swift */; };
 		A5693B242084E451005E8F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5693B222084E451005E8F44 /* Main.storyboard */; };
 		A5693B262084E451005E8F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5693B252084E451005E8F44 /* Assets.xcassets */; };
 		A5693B292084E451005E8F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5693B272084E451005E8F44 /* LaunchScreen.storyboard */; };
+		A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960A208C93BA00DD004C /* AddViewController.swift */; };
+		A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960C208C97DF00DD004C /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B60CA75F59EEEA3B238C6C3 /* Pods-FikaTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FikaTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime.release.xcconfig"; sourceTree = "<group>"; };
+		41AD0D98B726FC8650A37930 /* Pods-FikaTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FikaTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime.debug.xcconfig"; sourceTree = "<group>"; };
+		A502BAC72089CFAE009DCD07 /* Cafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
+		A502BAC92089D102009DCD07 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		A502BACB2089E106009DCD07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5609C842089E547009A42D5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A5609C862089E595009A42D5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A5693B1B2084E451005E8F44 /* FikaTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FikaTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5693B1E2084E451005E8F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5693B202084E451005E8F44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +37,9 @@
 		A5693B252084E451005E8F44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5693B282084E451005E8F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5693B2A2084E451005E8F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E6960A208C93BA00DD004C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		A5E6960C208C97DF00DD004C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FikaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +47,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17AA46CE180FC02C3C7508B2 /* Pods_FikaTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		934A46A17099E3F7043D1267 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A502BAC62089CF8F009DCD07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A502BAC72089CFAE009DCD07 /* Cafe.swift */,
+				A502BAC92089D102009DCD07 /* DataStorage.swift */,
+				A5E6960C208C97DF00DD004C /* Extensions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5609C832089E526009A42D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5609C842089E547009A42D5 /* MainViewController.swift */,
+				A5609C862089E595009A42D5 /* DetailViewController.swift */,
+				A5E6960A208C93BA00DD004C /* AddViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A5693B122084E451005E8F44 = {
 			isa = PBXGroup;
 			children = (
 				A5693B1D2084E451005E8F44 /* FikaTime */,
 				A5693B1C2084E451005E8F44 /* Products */,
+				EC458DB4B05C8C67354E1BF8 /* Pods */,
+				934A46A17099E3F7043D1267 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +103,26 @@
 		A5693B1D2084E451005E8F44 /* FikaTime */ = {
 			isa = PBXGroup;
 			children = (
+				A5609C832089E526009A42D5 /* Controller */,
+				A502BAC62089CF8F009DCD07 /* Model */,
 				A5693B1E2084E451005E8F44 /* AppDelegate.swift */,
 				A5693B202084E451005E8F44 /* ViewController.swift */,
 				A5693B222084E451005E8F44 /* Main.storyboard */,
 				A5693B252084E451005E8F44 /* Assets.xcassets */,
 				A5693B272084E451005E8F44 /* LaunchScreen.storyboard */,
 				A5693B2A2084E451005E8F44 /* Info.plist */,
+				A502BACB2089E106009DCD07 /* GoogleService-Info.plist */,
 			);
 			path = FikaTime;
+			sourceTree = "<group>";
+		};
+		EC458DB4B05C8C67354E1BF8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41AD0D98B726FC8650A37930 /* Pods-FikaTime.debug.xcconfig */,
+				3B60CA75F59EEEA3B238C6C3 /* Pods-FikaTime.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5693B2D2084E451005E8F44 /* Build configuration list for PBXNativeTarget "FikaTime" */;
 			buildPhases = (
+				05C745337C89DEF0726432E3 /* [CP] Check Pods Manifest.lock */,
 				A5693B172084E451005E8F44 /* Sources */,
 				A5693B182084E451005E8F44 /* Frameworks */,
 				A5693B192084E451005E8F44 /* Resources */,
+				EC110102BE4B4FF8251DF701 /* [CP] Embed Pods Frameworks */,
+				56FFC0A079867419699C1642 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,12 +188,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5693B292084E451005E8F44 /* LaunchScreen.storyboard in Resources */,
+				A502BACC2089E106009DCD07 /* GoogleService-Info.plist in Resources */,
 				A5693B262084E451005E8F44 /* Assets.xcassets in Resources */,
 				A5693B242084E451005E8F44 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05C745337C89DEF0726432E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FikaTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56FFC0A079867419699C1642 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC110102BE4B4FF8251DF701 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5693B172084E451005E8F44 /* Sources */ = {
@@ -138,6 +261,12 @@
 			files = (
 				A5693B212084E451005E8F44 /* ViewController.swift in Sources */,
 				A5693B1F2084E451005E8F44 /* AppDelegate.swift in Sources */,
+				A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */,
+				A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */,
+				A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */,
+				A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */,
+				A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */,
+				A5609C852089E547009A42D5 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +401,7 @@
 		};
 		A5693B2E2084E451005E8F44 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AD0D98B726FC8650A37930 /* Pods-FikaTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +416,7 @@
 		};
 		A5693B2F2084E451005E8F44 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B60CA75F59EEEA3B238C6C3 /* Pods-FikaTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
