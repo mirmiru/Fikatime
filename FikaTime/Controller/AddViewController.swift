@@ -16,6 +16,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var reviewTextview: UITextView!
     @IBOutlet weak var photoButton: UIButton!
     
+    //Cafe data
+    var enteredName : String?
+    var enteredReview : String?
+    
     //Firebase database
     var ref:DatabaseReference!
     var database: DataStorage!
@@ -80,32 +84,29 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         picker.dismiss(animated: true, completion: nil)
     }
     
+    func grabData() {
+        enteredName = nameTextfield.text
+        enteredReview = reviewTextview.text
+    }
+    
     @IBAction func saveButtonClick(_ sender: Any) {
+        grabData()
         
         //Store unique id for later use AND update database
         let newCafeRef = ref.child(NODE_CAFES).childByAutoId()
-        newCafeRef.child(KEY_NAME).setValue(nameTextfield.text)
+        newCafeRef.child(KEY_NAME).setValue(enteredName)
         print(newCafeRef.key)
         
         //Store review
-        ref.child(NODE_REVIEWS).child(newCafeRef.key).child(KEY_USER).setValue("review")
+        ref.child(NODE_REVIEWS).child(newCafeRef.key).child(KEY_USER).setValue(enteredReview)
         
         //Store rating
         ref.child(NODE_RATINGS).child(newCafeRef.key).child(KEY_USER).setValue(4.5)
         
         //Store photo
-        ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue(<#T##value: Any?##Any?#>)
+        ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue("filepath")
         
-        /*
-        //let id = ""
-        let name = "CafeAwesome"
-        let rating = 5
-        let review = "Greeeeat"
-        var cafe = Cafe(name: name, rating: rating, review: review)
-        
-        print(cafe)
-        database.saveData(cafe: cafe)
- */
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

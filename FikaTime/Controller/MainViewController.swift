@@ -11,15 +11,13 @@ import FirebaseDatabase
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //VILKEN MODEL?
-    //Databasen
-    
     //DUMMY DATA
-    let dummydata = [String]()
+    var dummydata : [String] = []
     
     //Firebase
     var ref: DatabaseReference!
     var database: DataStorage!
+    var databaseHandle: DatabaseHandle?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,7 +26,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
+
+        databaseListener()
+    }
+    
+    func databaseListener() {
+        //Firebase reference
         ref = Database.database().reference()
+        
+        //Retrieve data AND listen for changes
+       databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
+            //Code to execute when update
+            //Take all values and add to array
+            for child in snapshot.children.allObjects {
+                let snap = child as! DataSnapshot
+                if let dict = snap.value as? [String: Any] {
+                    let name = dict["name"] as! String
+                    self.dummydata.append(name)
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // TODO: Add database listener to update tableview array
@@ -49,10 +67,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.textLabel?.text = dummydata[indexPath.row]
         return cell!
     }
-    
-    func getTopList() {
-        
-    }
+
 
     /*
     // MARK: - Navigation
