@@ -22,3 +22,21 @@ extension UIButton {
         self.clipsToBounds = true
     }
 }
+
+extension UIView {
+    func setShadow(color: CGColor, opacity: Float, offset: CGSize, radius: CGFloat) {
+        self.layer.shadowColor = color
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        //self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+    }
+}
+
+extension UITextView {
+    func setPlaceholder(placeholder: String) {
+        self.text = placeholder
+        self.textColor = UIColor.lightGray
+    }
+}

@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct Review {
+    var review: [String: String]
+}
+
 struct Cafe {
     //var id: String?
     var name: String

@@ -26,7 +26,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
-
         databaseListener()
     }
     
@@ -51,7 +50,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // TODO: Add database listener to update tableview array
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

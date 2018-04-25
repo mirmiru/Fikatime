@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -15,14 +16,17 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var reviewTextview: UITextView!
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     //Cafe data
     var enteredName : String?
     var enteredReview : String?
+    var enteredImage : UIImage!
     
-    //Firebase database
+    //Firebase database and storage
     var ref:DatabaseReference!
     var database: DataStorage!
+    let storage = Storage.storage()
     
     //Database variables
     let NODE_CAFES = "cafes"
@@ -30,18 +34,22 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     let NODE_REVIEWS = "reviews"
     
     let KEY_NAME = "name"
-    let KEY_USER = "user"       //TODO: Replace with users id
+    let KEY_USER = "user"       //TODO: Replace with user's id
+    
+    // TODO: Show default photo when opening view for first time.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         database = DataStorage()
         photoButton.roundedButton()
+        containerView.setShadow(color: UIColor.darkGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 10)
         
         ref = Database.database().reference()
         
         //CAMERA
         if let image = UIImage(contentsOfFile: cachedImagePath) {
             imageImageview.image = image
+            enteredImage = image
         } else {
             NSLog("No cached image found.")
         }
@@ -80,7 +88,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
                 NSLog("Write failed.")
             }
         }
-        
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -104,7 +111,28 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         ref.child(NODE_RATINGS).child(newCafeRef.key).child(KEY_USER).setValue(4.5)
         
         //Store photo
-        ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue("filepath")
+        let imageName = NSUUID().uuidString
+        let storageRef = storage.reference().child("\(imageName).png")
+        if let uploadData = UIImagePNGRepresentation(imageImageview.image!) {
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                } else {
+                    print(metadata)
+                    
+                    //Store image with cafe info in firebase
+                    if let imageUrl = metadata?.downloadURL()?.absoluteString {
+                        self.ref.child("images").child(newCafeRef.key).child(self.KEY_USER).setValue(imageUrl)
+                    }
+                }
+            })
+        }
+        
+        //Store image with cafe info
+        //ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue(metadata.downloadUrl())
+        
+        
         
         dismiss(animated: true, completion: nil)
     }
