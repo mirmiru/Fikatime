@@ -18,6 +18,11 @@
 		A5693B242084E451005E8F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5693B222084E451005E8F44 /* Main.storyboard */; };
 		A5693B262084E451005E8F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5693B252084E451005E8F44 /* Assets.xcassets */; };
 		A5693B292084E451005E8F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5693B272084E451005E8F44 /* LaunchScreen.storyboard */; };
+		A5CF4E072092138000311BFA /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF4E062092138000311BFA /* SegmentedViewController.swift */; };
+		A5CF4E0A209213A600311BFA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF4E08209213A600311BFA /* MapViewController.swift */; };
+		A5CF4E0B209213A600311BFA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CF4E09209213A600311BFA /* MapViewController.xib */; };
+		A5CF4E0E209213B500311BFA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF4E0C209213B500311BFA /* TableViewController.swift */; };
+		A5CF4E0F209213B500311BFA /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CF4E0D209213B500311BFA /* TableViewController.xib */; };
 		A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960A208C93BA00DD004C /* AddViewController.swift */; };
 		A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960C208C97DF00DD004C /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +42,11 @@
 		A5693B252084E451005E8F44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5693B282084E451005E8F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5693B2A2084E451005E8F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5CF4E062092138000311BFA /* SegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
+		A5CF4E08209213A600311BFA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A5CF4E09209213A600311BFA /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		A5CF4E0C209213B500311BFA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A5CF4E0D209213B500311BFA /* TableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
 		A5E6960A208C93BA00DD004C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		A5E6960C208C97DF00DD004C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FikaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +88,11 @@
 				A5609C842089E547009A42D5 /* MainViewController.swift */,
 				A5609C862089E595009A42D5 /* DetailViewController.swift */,
 				A5E6960A208C93BA00DD004C /* AddViewController.swift */,
+				A5CF4E062092138000311BFA /* SegmentedViewController.swift */,
+				A5CF4E08209213A600311BFA /* MapViewController.swift */,
+				A5CF4E09209213A600311BFA /* MapViewController.xib */,
+				A5CF4E0C209213B500311BFA /* TableViewController.swift */,
+				A5CF4E0D209213B500311BFA /* TableViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +205,8 @@
 				A5693B292084E451005E8F44 /* LaunchScreen.storyboard in Resources */,
 				A502BACC2089E106009DCD07 /* GoogleService-Info.plist in Resources */,
 				A5693B262084E451005E8F44 /* Assets.xcassets in Resources */,
+				A5CF4E0F209213B500311BFA /* TableViewController.xib in Resources */,
+				A5CF4E0B209213A600311BFA /* MapViewController.xib in Resources */,
 				A5693B242084E451005E8F44 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +283,10 @@
 				A5693B212084E451005E8F44 /* ViewController.swift in Sources */,
 				A5693B1F2084E451005E8F44 /* AppDelegate.swift in Sources */,
 				A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */,
+				A5CF4E0A209213A600311BFA /* MapViewController.swift in Sources */,
+				A5CF4E072092138000311BFA /* SegmentedViewController.swift in Sources */,
 				A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */,
+				A5CF4E0E209213B500311BFA /* TableViewController.swift in Sources */,
 				A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */,
 				A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */,
 				A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */,

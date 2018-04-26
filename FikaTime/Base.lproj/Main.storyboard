@@ -67,6 +67,11 @@
                                             <segue destination="TZh-kb-h8m" kind="show" identifier="segueDetail" id="7rU-ig-nGc"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Search" id="nd1-ZC-ftE">
+                                        <connections>
+                                            <segue destination="K98-5x-Yet" kind="show" id="ynN-hC-Lch"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Current Top 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avz-Yh-DXy">
@@ -281,36 +286,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybp-tP-Oal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1208.8" y="524.8875562218891"/>
+            <point key="canvasLocation" x="1217" y="949"/>
         </scene>
-        <!--View Controller-->
+        <!--Segmented View Controller-->
         <scene sceneID="XFV-2Q-Muf">
             <objects>
-                <viewController id="K98-5x-Yet" sceneMemberID="viewController">
+                <viewController id="K98-5x-Yet" customClass="SegmentedViewController" customModule="FikaTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AhH-G5-fTn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYF-jg-7zl">
-                                <rect key="frame" x="16" y="86" width="343" height="561"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="OYz-Jc-5Xp" kind="embed" id="bkz-M4-mtW"/>
-                                </connections>
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYF-jg-7zl">
+                                <rect key="frame" x="16" y="111" width="343" height="536"/>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nIc-P6-8uo">
-                                <rect key="frame" x="16" y="50" width="343" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nIc-P6-8uo">
+                                <rect key="frame" x="16" y="75" width="343" height="29"/>
                                 <segments>
                                     <segment title="Map"/>
                                     <segment title="List"/>
                                 </segments>
                                 <color key="tintColor" red="0.41585715137762469" green="0.38157421408797582" blue="0.3228865426810561" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeSegment:" destination="K98-5x-Yet" eventType="valueChanged" id="hMH-4L-fLz"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.84799333759999995" green="0.77162443839999995" blue="0.6517570359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7ei-cl-yVp" firstAttribute="trailing" secondItem="nIc-P6-8uo" secondAttribute="trailing" constant="16" id="Fak-6y-Gxj"/>
+                            <constraint firstItem="AYF-jg-7zl" firstAttribute="top" secondItem="nIc-P6-8uo" secondAttribute="bottom" constant="8" id="IZL-Qb-sH7"/>
+                            <constraint firstItem="7ei-cl-yVp" firstAttribute="bottom" secondItem="AYF-jg-7zl" secondAttribute="bottom" constant="20" id="Izk-7Q-0X4"/>
+                            <constraint firstItem="nIc-P6-8uo" firstAttribute="leading" secondItem="7ei-cl-yVp" secondAttribute="leading" constant="16" id="Kz6-AJ-zo6"/>
+                            <constraint firstItem="AYF-jg-7zl" firstAttribute="leading" secondItem="7ei-cl-yVp" secondAttribute="leading" constant="16" id="bcZ-RO-Udm"/>
+                            <constraint firstItem="nIc-P6-8uo" firstAttribute="top" secondItem="7ei-cl-yVp" secondAttribute="top" constant="11" id="c4X-x1-2Hi"/>
+                            <constraint firstItem="7ei-cl-yVp" firstAttribute="trailing" secondItem="AYF-jg-7zl" secondAttribute="trailing" constant="16" id="uVA-Ge-5HF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7ei-cl-yVp"/>
                     </view>
+                    <connections>
+                        <outlet property="viewContainer" destination="AYF-jg-7zl" id="cFb-99-T6w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOF-HU-oia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -333,21 +348,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opv-KV-plE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-260" y="134"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Gpq-IA-OI1">
-            <objects>
-                <viewController id="OYz-Jc-5Xp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CNu-98-cnj">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="561"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="l1B-7S-kQ8"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGR-We-Ti1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2722" y="91"/>
         </scene>
     </scenes>
     <resources>

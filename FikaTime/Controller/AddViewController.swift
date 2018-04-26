@@ -128,12 +128,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
                 }
             })
         }
-        
-        //Store image with cafe info
-        //ref.child("images").child(newCafeRef.key).child(KEY_USER).setValue(metadata.downloadUrl())
-        
-        
-        
         dismiss(animated: true, completion: nil)
     }
 
