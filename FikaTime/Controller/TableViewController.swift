@@ -7,29 +7,54 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let array = ["A", "B", "C"]
+    var cafeList = [String]()
+    var ref: DatabaseReference!
+    var databaseHandle: DatabaseHandle!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        loadData()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellTable")
 
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+        return cafeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTable", for: indexPath)
-        cell.textLabel?.text = array[indexPath.row]
+        cell.textLabel?.text = cafeList[indexPath.row]
         return cell
+    }
+    
+    func loadData() {
+        ref = Database.database().reference()
+        
+        databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+            
+            for child in snapshot.children.allObjects {
+                let snap = child as! DataSnapshot
+                if let dict = snap.value as? [String: String] {
+                    if let name = dict["name"] {
+                        self.cafeList.append(name)
+                    } else {
+                        print("No name found.")
+                    }
+                }
+                self.tableView.reloadData()
+            }
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
