@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 import FirebaseDatabase
 import FirebaseStorage
 
-class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var imageImageview: UIImageView!
     @IBOutlet weak var nameTextfield: UITextField!
@@ -22,6 +23,14 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     var enteredName : String?
     var enteredReview : String?
     var enteredImage : UIImage!
+    
+    //Location
+    lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        return manager
+    }()
     
     //Firebase database and storage
     var ref:DatabaseReference!
@@ -53,6 +62,27 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         } else {
             NSLog("No cached image found.")
         }
+    }
+    
+    //Get current location
+    @IBAction func getLocation(_ sender: Any) {
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if case .authorizedWhenInUse = status {
+            manager.requestLocation()
+        } else {
+            print("Current location not authorized.")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Success getting current location.")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error receiving location.")
     }
     
     var cachedImagePath: String {

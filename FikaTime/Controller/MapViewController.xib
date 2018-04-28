@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="FikaTime" customModuleProvider="target">
             <connections>
+                <outlet property="map" destination="cQL-G7-hjS" id="GBW-vT-u3A"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,18 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-G7-hjS">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </mapView>
+            </subviews>
             <color key="backgroundColor" red="0.86005504740000005" green="1" blue="0.97394327739999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cQL-G7-hjS" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Vmz-Zq-6p5"/>
+                <constraint firstItem="cQL-G7-hjS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VwB-3V-Ws6"/>
+                <constraint firstAttribute="trailing" secondItem="cQL-G7-hjS" secondAttribute="trailing" id="gJV-CX-G1f"/>
+                <constraint firstItem="cQL-G7-hjS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sdZ-Oy-0TW"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="87.5"/>
         </view>

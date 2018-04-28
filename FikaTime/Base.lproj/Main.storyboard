@@ -218,7 +218,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hml-3q-89i" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="109" y="46" width="125" height="25"/>
+                                        <rect key="frame" x="109" y="48" width="125" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -250,6 +250,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so4-zi-Wtf">
+                                        <rect key="frame" x="129" y="97" width="85" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Get location"/>
+                                        <connections>
+                                            <action selector="getLocation:" destination="N0B-de-A1M" eventType="touchUpInside" id="ctD-or-knp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -286,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybp-tP-Oal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="949"/>
+            <point key="canvasLocation" x="1216.8" y="948.57571214392806"/>
         </scene>
         <!--Segmented View Controller-->
         <scene sceneID="XFV-2Q-Muf">

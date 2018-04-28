@@ -39,9 +39,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadData() {
         ref = Database.database().reference()
-        
+
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
-            
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 if let dict = snap.value as? [String: String] {
@@ -53,7 +52,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 self.tableView.reloadData()
             }
-            
         })
     }
 
