@@ -79,6 +79,22 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Success getting current location.")
+        if let manager = locations.last {
+            CLGeocoder().reverseGeocodeLocation(manager) { (placemarks, error) in
+                if let places = placemarks {
+                        let place = places[0]
+                        self.showLocationDetails(placemark: place)
+                }
+            }
+        }
+    }
+    
+    func showLocationDetails(placemark: CLPlacemark) {
+        locationManager.stopUpdatingLocation()
+        print("Locality: \(placemark.locality)")
+        print("County \(placemark.country)")
+        print("Lat: \(placemark.location?.coordinate.latitude)")
+        print("Long: \(placemark.location?.coordinate.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
