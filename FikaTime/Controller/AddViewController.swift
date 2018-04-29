@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import FirebaseDatabase
 import FirebaseStorage
+import Cosmos
 
 class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
 
@@ -18,11 +19,15 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var reviewTextview: UITextView!
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var ratingBar: CosmosView!
     
     //Cafe data
     var enteredName : String?
     var enteredReview : String?
-    var enteredImage : UIImage!
+    var enteredImage : UIImage?
+    var enteredRating: Double?
+    var lat: Double?
+    var long: Double?
     
     //Location
     lazy var locationManager: CLLocationManager = {
@@ -44,8 +49,9 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     let KEY_NAME = "name"
     let KEY_USER = "user"       //TODO: Replace with user's id
+    let KEY_LAT = "latitude"
+    let KEY_LONG = "longitude"
     
-    // TODO: Show default photo when opening view for first time.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,10 +97,17 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
+        print("Thoroughfare: \(placemark.thoroughfare)")
+        print("Subthoroughfare: \(placemark.subThoroughfare)")
         print("Locality: \(placemark.locality)")
         print("County \(placemark.country)")
-        print("Lat: \(placemark.location?.coordinate.latitude)")
-        print("Long: \(placemark.location?.coordinate.longitude)")
+        
+        //Save lat & long
+        lat = placemark.location?.coordinate.latitude
+        long = placemark.location?.coordinate.longitude
+        
+        //print("Lat: \(placemark.location?.coordinate.latitude)")
+        //print("Long: \(placemark.location?.coordinate.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -140,21 +153,30 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     func grabData() {
         enteredName = nameTextfield.text
         enteredReview = reviewTextview.text
+        enteredRating = ratingBar.rating
     }
     
     @IBAction func saveButtonClick(_ sender: Any) {
         grabData()
         
         //Store unique id for later use AND update database
-        let newCafeRef = ref.child(NODE_CAFES).childByAutoId()
-        newCafeRef.child(KEY_NAME).setValue(enteredName)
-        print(newCafeRef.key)
+        let CAFE_ID = ref.child(NODE_CAFES).childByAutoId()
+        
+        //Store name
+        CAFE_ID.child(KEY_NAME).setValue(enteredName)
+        
+        //TEST - ID
+        print("Cafe ID: \(CAFE_ID.key)")
+    
+        //Store lat & long
+        ref.child(NODE_CAFES).child(CAFE_ID.key).child(KEY_LAT).setValue(lat)
+        ref.child(NODE_CAFES).child(CAFE_ID.key).child(KEY_LONG).setValue(long)
         
         //Store review
-        ref.child(NODE_REVIEWS).child(newCafeRef.key).child(KEY_USER).setValue(enteredReview)
+        ref.child(NODE_REVIEWS).child(CAFE_ID.key).child(KEY_USER).setValue(enteredReview)
         
         //Store rating
-        ref.child(NODE_RATINGS).child(newCafeRef.key).child(KEY_USER).setValue(4.5)
+        ref.child(NODE_RATINGS).child(CAFE_ID.key).child(KEY_USER).setValue(enteredRating)
         
         //Store photo
         let imageName = NSUUID().uuidString
@@ -169,7 +191,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
                     
                     //Store image with cafe info in firebase
                     if let imageUrl = metadata?.downloadURL()?.absoluteString {
-                        self.ref.child("images").child(newCafeRef.key).child(self.KEY_USER).setValue(imageUrl)
+                        self.ref.child("images").child(CAFE_ID.key).child(self.KEY_USER).setValue(imageUrl)
                     }
                 }
             })
