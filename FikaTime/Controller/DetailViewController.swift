@@ -17,17 +17,34 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     //Firebase
     var ref: DatabaseReference!
     var database: DataStorage!
     var databaseHandle: DatabaseHandle?
-    var reviewsData : [[String: String]] = []
+    var allReviews = [Review]()
     
+    //Variables
     var cafeId: String!
+    
+    struct Review {
+        var user: String
+        var review: String
+        
+        init(user: String, review: String) {
+            self.user = user
+            self.review = review
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //TEST
+        print("Received ID: \(cafeId)")
+        loadValues(id: cafeId)
+        
         tableview.delegate = self
         tableview.dataSource = self
         image.rounded()
@@ -38,6 +55,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func databaseListener() {
+        /*
         ref = Database.database().reference()
         
         databaseHandle = ref.child("reviews").observe(.value) { (snapshot) in
@@ -50,6 +68,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableview.reloadData()
             }
         }
+ */
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,12 +79,52 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviewsData.count
+        return allReviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellDetail")
-        cell?.textLabel?.text = reviewsData[indexPath.row]["user"]
+        //cell?.textLabel?.text = allReviews[indexPath.row]["user"]
+        cell?.textLabel?.text = allReviews[indexPath.row].user
         return cell!
+    }
+    
+    // MARK: - LOAD DATA
+    
+    func loadValues(id: String) {
+        Database.database().reference().child("cafes").child(cafeId).observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                self.name.text = dict["name"] as? String
+            }
+        }
+        
+        Database.database().reference().child("reviews").child(cafeId).observeSingleEvent(of: .value, with: { (snapshot) in
+            print("SNAPSHOT: \(snapshot)")
+            var nr = 1
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let r = Review(user: snap.key, review: snap.value as! String)
+                self.allReviews.append(r)
+            }
+            
+            /*
+            if let dict = snapshot.value as? [String: String] {
+                
+                for d in dict {
+                    print("KEY: \(dict.)")
+                    self.allReviews.append(dict)
+                }
+
+                for d in dict {
+                    let r = Review(user: d.key, review: d.value)
+                    print("D: \(r)")
+                    self.allReviews.append(r)
+                    //TODO: Save dictonaries to array and display in table
+                }
+ 
+            }
+ */
+        self.tableview.reloadData()
+        })
     }
 }

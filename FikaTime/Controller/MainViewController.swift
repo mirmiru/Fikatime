@@ -54,6 +54,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     //TEST
                     cafe.name = name
+                    self.testArray.append(cafe)
                     
                 }
                 print("TEST: Cafe id: \(cafe.id), name: \(cafe.name)")
@@ -82,7 +83,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? DetailViewController {
-            //destinationVC.cafeId = dummydata![]
+            if let index = tableView.indexPathForSelectedRow?.row {
+                destinationVC.cafeId = testArray[index].id
+            }
         }
     }
 

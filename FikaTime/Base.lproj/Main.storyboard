@@ -33,11 +33,11 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="50g-gn-qQe" id="b5w-9n-Etp">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c3o-d4-qbY">
-                                                    <rect key="frame" x="15" y="0.0" width="313" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="313" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -45,6 +45,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="TZh-kb-h8m" kind="show" id="SEU-tF-XZ3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -122,7 +125,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNm-DV-Igp" id="qgz-km-xJY">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -169,12 +172,13 @@
                     <connections>
                         <outlet property="containerView" destination="egd-Ew-Xcs" id="1B1-s1-D6n"/>
                         <outlet property="image" destination="Yj8-RQ-uge" id="t3H-Fa-xxk"/>
+                        <outlet property="name" destination="Wg6-Cu-Ih6" id="QoT-Qv-Cq1"/>
                         <outlet property="tableview" destination="027-od-S9b" id="7SV-tz-eN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heD-gV-tiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216.8" y="-158.77061469265368"/>
+            <point key="canvasLocation" x="1289" y="-291"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="6hN-gy-K9K">
@@ -338,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOF-HU-oia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1909.5999999999999" y="139.880059970015"/>
+            <point key="canvasLocation" x="2095" y="307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TWu-3v-eKZ">
@@ -364,4 +368,7 @@
         <image name="beverage-black-coffee-breakfast-1008239" width="4662" height="3088"/>
         <image name="icons8-screenshot-50" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SEU-tF-XZ3"/>
+    </inferredMetricsTieBreakers>
 </document>
