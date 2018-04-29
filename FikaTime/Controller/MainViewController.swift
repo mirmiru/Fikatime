@@ -29,12 +29,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         databaseListener()
     }
     
+    //MARK: - DATABASE LISTENER
+
     func databaseListener() {
-        //Firebase reference
         ref = Database.database().reference()
         
         //Retrieve data AND listen for changes
        databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
+            self.dummydata.removeAll()
             //Code to execute when update
             //Take all values and add to array
             for child in snapshot.children.allObjects {
@@ -47,9 +49,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-    // TODO: Add database listener to update tableview array
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

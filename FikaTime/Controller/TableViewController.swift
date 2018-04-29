@@ -41,6 +41,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         ref = Database.database().reference()
 
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+            self.cafeList.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 if let dict = snap.value as? [String: String] {
