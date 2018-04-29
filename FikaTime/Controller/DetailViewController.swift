@@ -22,8 +22,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ref: DatabaseReference!
     var database: DataStorage!
     var databaseHandle: DatabaseHandle?
-    
     var reviewsData : [[String: String]] = []
+    
+    var cafeId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +68,4 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell?.textLabel?.text = reviewsData[indexPath.row]["user"]
         return cell!
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

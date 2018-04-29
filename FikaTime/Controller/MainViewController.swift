@@ -14,6 +14,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //DUMMY DATA
     var dummydata : [String] = []
     
+    var testArray = [Cafe]()
+    
+    
     //Firebase
     var ref: DatabaseReference!
     var database: DataStorage!
@@ -37,14 +40,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Retrieve data AND listen for changes
        databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
             self.dummydata.removeAll()
-            //Code to execute when update
-            //Take all values and add to array
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
+                
+                //TEST
+                print("SNAP: \(snap.key)")
+                var cafe = Cafe()
+                cafe.id = snap.key
+                
                 if let dict = snap.value as? [String: Any] {
                     let name = dict["name"] as! String
                     self.dummydata.append(name)
+                    
+                    //TEST
+                    cafe.name = name
+                    
                 }
+                print("TEST: Cafe id: \(cafe.id), name: \(cafe.name)")
                 self.tableView.reloadData()
             }
         }
@@ -65,16 +77,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.textLabel?.text = dummydata[indexPath.row]
         return cell!
     }
-
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destination as? DetailViewController {
+            //destinationVC.cafeId = dummydata![]
+        }
     }
-    */
 
 }

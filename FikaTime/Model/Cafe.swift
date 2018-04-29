@@ -8,28 +8,28 @@
 
 import Foundation
 
-struct Review {
-    var review: [String: String]
+struct CafeReview {
+    //dict: user: review
+    let review: [String: String]
+}
+
+struct CafeImage {
+    //dict: user: image
+    let cafeImage: [String: String]
 }
 
 struct Cafe {
-    //var id: String?
-    var name: String
-    var rating: Int
-    var review: String
-    var allReviews: [String]?   //make this into dictionary array to hold user: review data?
-    //var imageFilepath: String?
+    var id: String?
+    var name: String?
+    var rating: Double?
+    //let allReviews: [CafeReview]?
+    //let allImages: [CafeImage]?
     
-    init(name: String, rating: Int, review: String) {
+    
+    init(id: String? = nil, name: String? = nil, rating: Double? = nil) {
+        self.id = id
         self.name = name
-        self.review = review
         self.rating = rating
-        
-        if allReviews != nil {
-            allReviews?.append(review)
-        } else {
-            allReviews = [review]
-        }
     }
 }
 
