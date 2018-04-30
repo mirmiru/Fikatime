@@ -39,7 +39,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadData() {
         ref = Database.database().reference()
-
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
             self.cafeList.removeAll()
             for child in snapshot.children.allObjects {

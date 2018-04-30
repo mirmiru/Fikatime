@@ -9,8 +9,13 @@
 import Foundation
 
 struct CafeReview {
-    //dict: user: review
-    let review: [String: String]
+    var user: String
+    var review: String
+}
+
+struct CafeCoordinates {
+    var latitude: Double
+    var longitude: Double
 }
 
 struct CafeImage {
@@ -22,14 +27,16 @@ struct Cafe {
     var id: String?
     var name: String?
     var rating: Double?
-    //let allReviews: [CafeReview]?
+    var coordinates: CafeCoordinates
+    //var allReviews: [CafeReview]?
     //let allImages: [CafeImage]?
     
     
-    init(id: String? = nil, name: String? = nil, rating: Double? = nil) {
+    init(id: String? = nil, name: String? = nil, rating: Double? = nil, lat: Double = 0, long: Double = 0) {
         self.id = id
         self.name = name
         self.rating = rating
+        self.coordinates = CafeCoordinates(latitude: lat, longitude: long)
     }
 }
 

@@ -9,19 +9,24 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     let locationManager = CLLocationManager()
+    var ref: DatabaseReference!
+    var databaseHandle: DatabaseHandle!
+    
+    var allCafes: [Cafe]!
     
     @IBOutlet weak var map: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllCafes()
         OperationQueue.main.addOperation {
             self.locationManager.requestWhenInUseAuthorization()
         }
-        
         setUpMap()
     }
     
@@ -36,7 +41,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // Dispose of any resources that can be recreated.
     }
     
-
+    func getAllCafes() {
+        //Get all cafes in database
+        
+        ref = Database.database().reference()
+            databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+                //self.allCafes.removeAll()
+                for child in snapshot.children.allObjects {
+                    let snap = child as! DataSnapshot
+                    print("SNAPP: \(snap)")
+                    if let dict = snap.value as? [String: String] {
+                        
+                        /*
+                        if let name = dict["name"] {
+                            self.allCafes.append(name)
+                        } else {
+                            print("No name found.")
+                        }
+                        */
+                    }
+                }
+            })
+    }
+    
     /*
     // MARK: - Navigation
 

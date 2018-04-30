@@ -73,7 +73,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Tableview
@@ -84,8 +83,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellDetail")
-        //cell?.textLabel?.text = allReviews[indexPath.row]["user"]
-        cell?.textLabel?.text = allReviews[indexPath.row].user
+        cell?.textLabel?.text = allReviews[indexPath.row].review
         return cell!
     }
     
@@ -99,32 +97,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         Database.database().reference().child("reviews").child(cafeId).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("SNAPSHOT: \(snapshot)")
-            var nr = 1
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let r = Review(user: snap.key, review: snap.value as! String)
                 self.allReviews.append(r)
             }
-            
-            /*
-            if let dict = snapshot.value as? [String: String] {
-                
-                for d in dict {
-                    print("KEY: \(dict.)")
-                    self.allReviews.append(dict)
-                }
-
-                for d in dict {
-                    let r = Review(user: d.key, review: d.value)
-                    print("D: \(r)")
-                    self.allReviews.append(r)
-                    //TODO: Save dictonaries to array and display in table
-                }
- 
-            }
- */
-        self.tableview.reloadData()
+            self.tableview.reloadData()
         })
     }
 }

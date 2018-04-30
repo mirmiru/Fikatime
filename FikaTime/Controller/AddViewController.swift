@@ -188,7 +188,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
                     return
                 } else {
                     print(metadata)
-                    
                     //Store image with cafe info in firebase
                     if let imageUrl = metadata?.downloadURL()?.absoluteString {
                         self.ref.child("images").child(CAFE_ID.key).child(self.KEY_USER).setValue(imageUrl)
