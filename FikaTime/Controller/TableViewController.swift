@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var cafeList = [String]()
+    var allCafes = [Cafe]()
     var ref: DatabaseReference!
     var databaseHandle: DatabaseHandle!
     
@@ -21,43 +21,60 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        loadData()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellTable")
+        
+        //TEST
+        databaseListener {
+            print("TABLE: DATABASELISTENER FINISHED")
+            self.sortData()
+        }
 
-        // Do any additional setup after loading the view.
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellTable")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cafeList.count
+        return allCafes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTable", for: indexPath)
-        cell.textLabel?.text = cafeList[indexPath.row]
+        cell.textLabel?.text = allCafes[indexPath.row].name
         return cell
     }
     
-    func loadData() {
+    func databaseListener(finished: @escaping () -> Void) {
+    //func databaseListener() {
         ref = Database.database().reference()
-        databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
-            self.cafeList.removeAll()
+        
+        //Retrieve data AND listen for changes
+            databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+            self.allCafes.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
-                if let dict = snap.value as? [String: String] {
-                    if let name = dict["name"] {
-                        self.cafeList.append(name)
-                    } else {
-                        print("No name found.")
-                    }
+                
+                print("DBLISTENER SNAP: \(snap.key)")
+                var cafe = Cafe()
+                cafe.id = snap.key
+                
+                if let dict = snap.value as? [String: Any] {
+                    let name = dict["name"] as! String
+                    cafe.name = name
+                    self.allCafes.append(cafe)
                 }
                 self.tableView.reloadData()
             }
+            finished()
         })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func sortData() {
+        print("Unsorted: \(allCafes)")
+        allCafes.sort(by: { $0.name! < $1.name!})
+        print("Sorted: \(allCafes)")
     }
     
     /*

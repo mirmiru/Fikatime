@@ -37,26 +37,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //Retrieve data AND listen for changes
        databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
-            //self.dummydata.removeAll()
             self.testArray.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 
-                //TEST
                 print("SNAP: \(snap.key)")
                 var cafe = Cafe()
                 cafe.id = snap.key
                 
                 if let dict = snap.value as? [String: Any] {
                     let name = dict["name"] as! String
-                    //self.dummydata.append(name)
                     
-                    //TEST
                     cafe.name = name
                     self.testArray.append(cafe)
                     
                 }
-                //print("TEST: Cafe id: \(cafe.id), name: \(cafe.name)")
                 self.tableView.reloadData()
             }
         }
@@ -69,13 +64,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - TABLE
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return dummydata.count
         return testArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMain")
-        //cell?.textLabel?.text = dummydata[indexPath.row]
         cell?.textLabel?.text = testArray[indexPath.row].name
         return cell!
     }
