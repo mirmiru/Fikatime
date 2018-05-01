@@ -16,9 +16,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     var ref: DatabaseReference!
     var databaseHandle: DatabaseHandle!
-    
     var allCafes = [Cafe]()
-    
+    var rating: Double!
+
     @IBOutlet weak var map: MKMapView!
     
     override func viewDidLoad() {
@@ -28,13 +28,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         map.delegate = self
         setUpMap()
-        //getAllCafes()
         
         testFunc {
             print("Doing more stuff")
-            self.createAnnotations()
+            //self.createAnnotations()
         }
-        
     }
     
     func setUpMap() {
@@ -48,56 +46,48 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    func getAllCafes() {
-        //Get all cafes in database
-        
-        ref = Database.database().reference()
-            databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
-                //self.allCafes.removeAll()
-                for child in snapshot.children.allObjects {
-                    let snap = child as! DataSnapshot
-                    let id = snap.key
-                    
-                    //TODO: Fix rating to remove static value
-                    let rating = 3.3
-                    
-                    if let dict = snap.value as? [String: Any],
-                        let name = dict["name"] as? String,
-                        let lat = dict["latitude"] as? Double,
-                        let long = dict["longitude"] as? Double {
-                            let cafe = Cafe(id: id, name: name, rating: rating, lat: lat, long: long)
-                            print("ADDING CAFE: \(cafe)")
-                            self.allCafes.append(cafe)
-                    } else {
-                        print("Found nil values for \(id)")
-                    }
+    func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
+        Database.database().reference().child("ratings").child(cafe.key).observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                if let r = snap.value as? Double {
+                    print("R: \(r)")
+                    self.rating = r
+                } else {
+                    print("No rating found.")
                 }
-            
-            })
+            }
+            finished()
+        })
     }
- */
     
     func testFunc(finished: @escaping () -> Void) {
-        print("Doing stuff")
-        
         ref = Database.database().reference()
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
-            //self.allCafes.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 let id = snap.key
-                
-                //TODO: Fix rating to remove static value
-                let rating = 3.3
                 
                 if let dict = snap.value as? [String: Any],
                     let name = dict["name"] as? String,
                     let lat = dict["latitude"] as? Double,
                     let long = dict["longitude"] as? Double {
-                    let cafe = Cafe(id: id, name: name, rating: rating, lat: lat, long: long)
+                    /*
+                    var cafe = Cafe(id: id, name: name, rating: rating, lat: lat, long: long)
                     print("ADDING CAFE: \(cafe)")
                     self.allCafes.append(cafe)
+                    */
+                    
+                    //TEST GET RATING
+                    self.loadRating(cafe: snap, finished: {
+                        let cafe = Cafe(id: id, name: name, rating: self.rating, lat: lat, long: long)
+                        print("ADDING CAFE: \(cafe)")
+                        self.allCafes.append(cafe)
+                        
+                        //TEST
+                        self.createAnnotations()
+                    })
+                    
                 } else {
                     print("Found nil values for \(id)")
                 }
@@ -105,7 +95,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             finished()
         })
     }
-    
+            
     func createAnnotations() {
         print("CreateAnnotations()")
         for c in allCafes {
@@ -116,7 +106,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             print("Added annotation \(annotation)")
         }
     }
-
 }
 
 

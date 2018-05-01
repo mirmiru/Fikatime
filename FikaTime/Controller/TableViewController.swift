@@ -22,12 +22,9 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        //TEST
         databaseListener {
-            print("TABLE: DATABASELISTENER FINISHED")
             self.sortData()
         }
-
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellTable")
     }
     
@@ -42,16 +39,11 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func databaseListener(finished: @escaping () -> Void) {
-    //func databaseListener() {
         ref = Database.database().reference()
-        
-        //Retrieve data AND listen for changes
-            databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+        databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
             self.allCafes.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
-                
-                print("DBLISTENER SNAP: \(snap.key)")
                 var cafe = Cafe()
                 cafe.id = snap.key
                 
@@ -72,9 +64,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func sortData() {
-        print("Unsorted: \(allCafes)")
         allCafes.sort(by: { $0.name! < $1.name!})
-        print("Sorted: \(allCafes)")
     }
     
     /*
