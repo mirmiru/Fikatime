@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //DUMMY DATA
     //var dummydata : [String] = []
     var testArray = [Cafe]()
+    var rating: Double!
     
     //Firebase
     var ref: DatabaseReference!
@@ -40,21 +41,44 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.testArray.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
-                
                 print("SNAP: \(snap.key)")
                 var cafe = Cafe()
                 cafe.id = snap.key
                 
                 if let dict = snap.value as? [String: Any] {
                     let name = dict["name"] as! String
-                    
                     cafe.name = name
+                    //self.testArray.append(cafe)
+                }
+                
+                //TEST Get rating
+                self.loadRating(cafe: snap, finished: {
+                    cafe.rating = self.rating
+                    print("GOT RATING: \(cafe.rating)")
                     self.testArray.append(cafe)
                     
-                }
-                self.tableView.reloadData()
+                    self.sortData()
+                    
+                    self.tableView.reloadData()
+                })
+                
+               // self.tableView.reloadData()
             }
         }
+    }
+    
+    func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
+        Database.database().reference().child("ratings").child(cafe.key).observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                if let r = snap.value as? Double {
+                    self.rating = r
+                } else {
+                    print("No rating found.")
+                }
+            }
+            finished()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +94,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMain")
         cell?.textLabel?.text = testArray[indexPath.row].name
+        cell?.detailTextLabel?.text = testArray[indexPath.row].rating?.description
         return cell!
+    }
+    
+    func sortData() {
+        testArray.sort(by: { $0.rating! > $1.rating! })
     }
     
     // MARK: - Navigation
