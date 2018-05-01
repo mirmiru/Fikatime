@@ -51,7 +51,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 if let r = snap.value as? Double {
-                    print("R: \(r)")
                     self.rating = r
                 } else {
                     print("No rating found.")
@@ -72,19 +71,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let name = dict["name"] as? String,
                     let lat = dict["latitude"] as? Double,
                     let long = dict["longitude"] as? Double {
-                    /*
-                    var cafe = Cafe(id: id, name: name, rating: rating, lat: lat, long: long)
-                    print("ADDING CAFE: \(cafe)")
-                    self.allCafes.append(cafe)
-                    */
-                    
-                    //TEST GET RATING
+
+                    //Get rating
                     self.loadRating(cafe: snap, finished: {
                         let cafe = Cafe(id: id, name: name, rating: self.rating, lat: lat, long: long)
                         print("ADDING CAFE: \(cafe)")
                         self.allCafes.append(cafe)
                         
-                        //TEST
+                        //Create annotations
                         self.createAnnotations()
                     })
                     

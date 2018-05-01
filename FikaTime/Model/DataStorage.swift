@@ -9,10 +9,9 @@
 import Foundation
 import FirebaseDatabase
 
+/*
 struct DataStorage {
-    
-    /*
-    
+ 
     //Receive data and create a cafe dictionary holding said data
     func saveCafe(name: String, rating: Double, review: String){
         let cafeData : [String: Any] =
@@ -28,8 +27,7 @@ struct DataStorage {
     //Save dictionary to local database
     func save(_ cafe: [String: Any]) {
     }
- 
-    */
+
     
     var cafes = UserDefaults.standard.array(forKey: "savedData") as? [Cafe]
     var savedData = UserDefaults.standard.array(forKey: "savedData") as? [Cafe]
@@ -52,3 +50,4 @@ struct DataStorage {
         }
     }
 }
+*/

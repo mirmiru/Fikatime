@@ -21,7 +21,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //Firebase
     var ref: DatabaseReference!
-    var database: DataStorage!
+    //var database: DataStorage!
     var databaseHandle: DatabaseHandle?
     var allReviews = [Review]()
     

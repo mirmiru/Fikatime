@@ -20,6 +20,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var ratingBar: CosmosView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     //Cafe data
     var enteredName : String?
@@ -39,7 +40,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     //Firebase database and storage
     var ref:DatabaseReference!
-    var database: DataStorage!
+    //var database: DataStorage!
     let storage = Storage.storage()
     
     //Database variables
@@ -55,7 +56,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        database = DataStorage()
+        
+        //database = DataStorage()
         photoButton.roundedButton()
         containerView.setShadow(color: UIColor.darkGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 10)
         
@@ -154,6 +156,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         enteredName = nameTextfield.text
         enteredReview = reviewTextview.text
         enteredRating = ratingBar.rating
+    }
+    
+    @IBAction func cancelButtonClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonClick(_ sender: Any) {

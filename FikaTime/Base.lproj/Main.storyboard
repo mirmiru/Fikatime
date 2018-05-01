@@ -65,11 +65,6 @@
                                             </segue>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Detail" id="mg0-KO-BJl">
-                                        <connections>
-                                            <segue destination="TZh-kb-h8m" kind="show" identifier="segueDetail" id="7rU-ig-nGc"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem title="Search" id="nd1-ZC-ftE">
                                         <connections>
                                             <segue destination="K98-5x-Yet" kind="show" id="ynN-hC-Lch"/>
@@ -178,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heD-gV-tiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="-291"/>
+            <point key="canvasLocation" x="1367" y="-139"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="6hN-gy-K9K">
@@ -192,8 +187,11 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Undo" id="iAV-Rt-OP2"/>
-                                    <barButtonItem title="Save" id="ZgM-Of-ykG"/>
+                                    <barButtonItem title="Cancel" id="iAV-Rt-OP2">
+                                        <connections>
+                                            <action selector="cancelButtonClick:" destination="N0B-de-A1M" id="0QO-5B-eIK"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background-beverage-breakfast-414645" translatesAutoresizingMaskIntoConstraints="NO" id="j2j-TG-I9E">
@@ -289,6 +287,7 @@
                         <viewLayoutGuide key="safeArea" id="dLM-UH-N3W"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="iAV-Rt-OP2" id="63J-pB-llk"/>
                         <outlet property="containerView" destination="zfh-TD-tbA" id="obz-cS-zoS"/>
                         <outlet property="imageImageview" destination="j2j-TG-I9E" id="ysh-uz-fdx"/>
                         <outlet property="nameTextfield" destination="9a2-FK-OgE" id="fCq-m2-CGj"/>
@@ -299,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybp-tP-Oal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216.8" y="948.57571214392806"/>
+            <point key="canvasLocation" x="1158" y="950"/>
         </scene>
         <!--Segmented View Controller-->
         <scene sceneID="XFV-2Q-Muf">
@@ -342,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOF-HU-oia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="307"/>
+            <point key="canvasLocation" x="2057" y="458"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TWu-3v-eKZ">
@@ -368,7 +367,4 @@
         <image name="beverage-black-coffee-breakfast-1008239" width="4662" height="3088"/>
         <image name="icons8-screenshot-50" width="50" height="50"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="SEU-tF-XZ3"/>
-    </inferredMetricsTieBreakers>
 </document>

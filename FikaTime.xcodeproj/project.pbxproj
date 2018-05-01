@@ -25,7 +25,6 @@
 		A5CF4E0F209213B500311BFA /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CF4E0D209213B500311BFA /* TableViewController.xib */; };
 		A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960A208C93BA00DD004C /* AddViewController.swift */; };
 		A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6960C208C97DF00DD004C /* Extensions.swift */; };
-		A5F5239E20977F24004328F3 /* SortedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5239D20977F24004328F3 /* SortedTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +49,6 @@
 		A5CF4E0D209213B500311BFA /* TableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
 		A5E6960A208C93BA00DD004C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		A5E6960C208C97DF00DD004C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		A5F5239D20977F24004328F3 /* SortedTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedTable.swift; sourceTree = "<group>"; };
 		A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FikaTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,7 +78,6 @@
 				A502BAC72089CFAE009DCD07 /* Cafe.swift */,
 				A502BAC92089D102009DCD07 /* DataStorage.swift */,
 				A5E6960C208C97DF00DD004C /* Extensions.swift */,
-				A5F5239D20977F24004328F3 /* SortedTable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5693B212084E451005E8F44 /* ViewController.swift in Sources */,
-				A5F5239E20977F24004328F3 /* SortedTable.swift in Sources */,
 				A5693B1F2084E451005E8F44 /* AppDelegate.swift in Sources */,
 				A5E6960B208C93BA00DD004C /* AddViewController.swift in Sources */,
 				A5CF4E0A209213A600311BFA /* MapViewController.swift in Sources */,

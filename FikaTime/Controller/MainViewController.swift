@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //Firebase
     var ref: DatabaseReference!
-    var database: DataStorage!
+    //var database: DataStorage!
     var databaseHandle: DatabaseHandle?
 
     @IBOutlet weak var tableView: UITableView!
