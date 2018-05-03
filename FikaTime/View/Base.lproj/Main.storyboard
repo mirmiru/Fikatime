@@ -351,6 +351,7 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonClick:" destination="N0B-de-A1M" eventType="touchUpInside" id="m8P-Qn-Cav"/>
+                                    <action selector="saveButtonClicked:" destination="NwI-qV-fe1" eventType="touchUpInside" id="W8e-ql-V9X"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lah-p4-Ww4">
@@ -361,6 +362,7 @@
                                     <color key="titleColor" red="0.31551395939999999" green="0.31551395939999999" blue="0.31551395939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="cameraButtonClicked:" destination="NwI-qV-fe1" eventType="touchUpInside" id="r75-jg-ikA"/>
                                     <action selector="onPhotoButtonClick:" destination="N0B-de-A1M" eventType="touchUpInside" id="FOq-Un-w0w"/>
                                 </connections>
                             </button>
@@ -380,6 +382,7 @@
                         <viewLayoutGuide key="safeArea" id="gTp-F4-S35"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="3ko-M0-2Ai" id="NjP-bV-6AK"/>
                         <outlet property="locationLabel" destination="GhF-dJ-OOA" id="PKi-7l-pcS"/>
                         <outlet property="nameLabel" destination="fcI-nj-OIM" id="VRK-Y7-P15"/>
                         <outlet property="reviewTextView" destination="dtf-Zd-giG" id="rHJ-Qe-cWl"/>

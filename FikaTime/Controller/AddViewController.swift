@@ -101,13 +101,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
-        /*
-        print("Thoroughfare: \(placemark.thoroughfare)")
-        print("Subthoroughfare: \(placemark.subThoroughfare)")
-        print("Locality: \(placemark.locality)")
-        print("County \(placemark.country)")
-        */
-        
+
         //NAME, STREETNAME STREETNR, CITY
         if let locName = placemark.name,
             let streetName = placemark.thoroughfare,
@@ -122,9 +116,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         //Save lat & long
         lat = placemark.location?.coordinate.latitude
         long = placemark.location?.coordinate.longitude
-        
-        //print("Lat: \(placemark.location?.coordinate.latitude)")
-        //print("Long: \(placemark.location?.coordinate.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
