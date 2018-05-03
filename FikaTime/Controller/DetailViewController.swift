@@ -49,9 +49,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableview.dataSource = self
         image.rounded()
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
-        // Do any additional setup after loading the view.
         
-        databaseListener()
+        //databaseListener()
     }
     
     func databaseListener() {
@@ -75,6 +74,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func mainButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +87,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cellDetail")
         cell?.textLabel?.text = allReviews[indexPath.row].review
+        cell?.detailTextLabel?.text = allReviews[indexPath.row].user
         return cell!
     }
     
@@ -100,9 +104,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let r = Review(user: snap.key, review: snap.value as! String)
+                
                 self.allReviews.append(r)
             }
             self.tableview.reloadData()
         })
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? AddReviewViewController {
+            destinationVC.cafeId = self.cafeId
+            destinationVC.cafeName = self.name.text
+            //destinationVC.cafeLocation = 
+        }
     }
 }

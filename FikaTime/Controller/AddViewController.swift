@@ -21,6 +21,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var ratingBar: CosmosView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var locationLabel: UILabel!
     
     //Cafe data
     var enteredName : String?
@@ -29,6 +30,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     var enteredRating: Double?
     var lat: Double?
     var long: Double?
+    var address: String?
     
     //Location
     lazy var locationManager: CLLocationManager = {
@@ -49,7 +51,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     let NODE_REVIEWS = "reviews"
     
     let KEY_NAME = "name"
-    let KEY_USER = "user"       //TODO: Replace with user's id
+    let KEY_USER = "user"       //TODO: Replace static value with user id/name
     let KEY_LAT = "latitude"
     let KEY_LONG = "longitude"
     
@@ -99,10 +101,23 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
+        /*
         print("Thoroughfare: \(placemark.thoroughfare)")
         print("Subthoroughfare: \(placemark.subThoroughfare)")
         print("Locality: \(placemark.locality)")
         print("County \(placemark.country)")
+        */
+        
+        //NAME, STREETNAME STREETNR, CITY
+        if let locName = placemark.name,
+            let streetName = placemark.thoroughfare,
+            let streetNr = placemark.subThoroughfare,
+            let locCity = placemark.locality,
+            let adminArea = placemark.administrativeArea {
+            address = "\(locName), \(streetName) \(streetNr), \(locCity), \(adminArea)"
+            locationLabel.text = address
+            //print("COMPOUND ADDRESS: \(self.address)")
+        }
         
         //Save lat & long
         lat = placemark.location?.coordinate.latitude
@@ -123,7 +138,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     @IBAction func onPhotoButtonClick(_ sender: Any) {
-        //Take photo/access gallery
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
