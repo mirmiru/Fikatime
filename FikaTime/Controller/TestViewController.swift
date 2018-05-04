@@ -16,7 +16,7 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     
     var dataArray: [URL]!
-    var images : [UIImage] = [#imageLiteral(resourceName: "cafe01"), #imageLiteral(resourceName: "cafe02"), #imageLiteral(resourceName: "cafe03")]
+    //var images : [UIImage] = [#imageLiteral(resourceName: "cafe01"), #imageLiteral(resourceName: "cafe02"), #imageLiteral(resourceName: "cafe03")]
     var testArray = [UIImage]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
@@ -25,34 +25,13 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        pageControl.numberOfPages = images.count
-        
-        for index in 0..<images.count {
-            
-            frame.origin.x = scrollView.frame.size.width * CGFloat(index)
-            frame.size = scrollView.frame.size
-            
-            let imageView = UIImageView(frame: frame)
-            imageView.image = images[index]
-            self.scrollView.addSubview(imageView)
-        }
-        
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(images.count), height: scrollView.frame.size.height)
-        scrollView.delegate = self
- */
-        
         getUrls()
-        
-        
     }
     
     func setUpScrollView() {
         pageControl.numberOfPages = testArray.count
         
         for index in 0..<testArray.count {
-            
             frame.origin.x = scrollView.frame.size.width * CGFloat(index)
             frame.size = scrollView.frame.size
             
@@ -69,7 +48,6 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
         let pageNr = scrollView.contentOffset.x / scrollView.frame.size.width
         pageControl.currentPage = Int(pageNr)
     }
-
     
     func downloadImage(from url: String) {
         let imageURL = URLRequest(url: URL(string: url)!)
@@ -83,27 +61,22 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
                 print("Dispatch")
                 if let image = UIImage(data: data!) {
                     self.testArray.append(image)
-                    
                     print(self.testArray)
                     self.setUpScrollView()
                 }
             }
         }
         task.resume()
-        
     }
     
     func getUrls() {
-        Database.database().reference().child("images").child("-LBKakeFU3fs7FFO_2Gl").observeSingleEvent(of: .value) { (snapshot) in
-            //CODE
-            
+        Database.database().reference().child("images").child("-LBMKiKn46ahlEu2dNrf").observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 if let snap = child as? DataSnapshot {
                     print("SNAP: \(snap)")
-                    //if let url = URL(string: snap.value as! String) {
+    
                     if let url = snap.value as? String {
                         print("URL \(url)")
-                        //self.dataArray.append(url)
                         
                         //TEST
                         self.downloadImage(from: url)
@@ -119,7 +92,6 @@ class TestViewController: UIViewController, UIScrollViewDelegate {
                                 }
                             }
                         })
-                        //self.inputSourceArray.append(FirebaseImageSource(urlString: snap.value as! String))
                     }
                 }
             }
