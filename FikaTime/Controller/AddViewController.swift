@@ -22,6 +22,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var ratingBar: CosmosView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     //Cafe data
     var enteredName : String?
@@ -58,8 +59,11 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photoButton.roundedButton()
-        containerView.setShadow(color: UIColor.darkGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 10)
+        photoButton.roundButton()
+        saveButton.roundedCorners()
+        saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
+        
+        containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
         
         //CAMERA
         /*
@@ -106,6 +110,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
             let streetNr = placemark.subThoroughfare,
             let locCity = placemark.locality,
             let adminArea = placemark.administrativeArea {
+            
             address = "\(locName), \(streetName) \(streetNr), \(locCity), \(adminArea)"
             locationLabel.text = address
         }

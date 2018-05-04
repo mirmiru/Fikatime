@@ -18,7 +18,6 @@
 		A5693B262084E451005E8F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5693B252084E451005E8F44 /* Assets.xcassets */; };
 		A5693B292084E451005E8F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5693B272084E451005E8F44 /* LaunchScreen.storyboard */; };
 		A5C85F6E2099F3EF00634B65 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C85F6D2099F3EF00634B65 /* AddReviewViewController.swift */; };
-		A5C85F71209A182B00634B65 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C85F70209A182B00634B65 /* TestViewController.swift */; };
 		A5CF4E072092138000311BFA /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF4E062092138000311BFA /* SegmentedViewController.swift */; };
 		A5CF4E0A209213A600311BFA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF4E08209213A600311BFA /* MapViewController.swift */; };
 		A5CF4E0B209213A600311BFA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CF4E09209213A600311BFA /* MapViewController.xib */; };
@@ -43,7 +42,6 @@
 		A5693B282084E451005E8F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5693B2A2084E451005E8F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C85F6D2099F3EF00634B65 /* AddReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
-		A5C85F70209A182B00634B65 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		A5CF4E062092138000311BFA /* SegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
 		A5CF4E08209213A600311BFA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5CF4E09209213A600311BFA /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				A5CF4E0C209213B500311BFA /* TableViewController.swift */,
 				A5CF4E0D209213B500311BFA /* TableViewController.xib */,
 				A5C85F6D2099F3EF00634B65 /* AddReviewViewController.swift */,
-				A5C85F70209A182B00634B65 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -301,7 +298,6 @@
 				A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */,
 				A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */,
 				A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */,
-				A5C85F71209A182B00634B65 /* TestViewController.swift in Sources */,
 				A5609C852089E547009A42D5 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

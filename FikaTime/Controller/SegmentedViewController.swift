@@ -30,6 +30,10 @@ class SegmentedViewController: UIViewController {
         }
         viewContainer.bringSubview(toFront: segmentedViews[0])
     }
+    
+    @IBAction func swipeToReturn(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
         //When user clicks on segmentcontroller

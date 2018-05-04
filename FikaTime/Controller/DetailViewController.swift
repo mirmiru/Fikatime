@@ -11,9 +11,6 @@ import MapKit
 import FirebaseDatabase
 import FirebaseStorage
 
-//VILKEN MODEL?
-//Databasen - hämta enskild cafe data
-
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     @IBOutlet weak var tableview: UITableView!
@@ -27,15 +24,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ref: DatabaseReference!
     var storage = Storage.storage()
     var databaseHandle: DatabaseHandle?
-    var allReviews = [Review]()
     
     //Variables
+    var allReviews = [Review]()
     var cafeData = Cafe()
     var testValue: String?
     var cafeId: String!
     var testArray = [UIImage]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-    
+
     struct Review {
         var user: String
         var review: String
@@ -51,17 +48,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         scrollView.bringSubview(toFront: pageControl)
         self.navigationController?.isNavigationBarHidden = true
+        
         //TEST
         print("Received ID: \(cafeId)")
-        print("Received NAME: \(testValue)")
-
+        
         loadValues(id: cafeId) {
                 print("GETLOCATION")
-                //self.getLocation()
         }
         
-        tableview.delegate = self
-        tableview.dataSource = self
+        setUpTableView()
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
         
         getUrls()
@@ -77,6 +72,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - TABLEVIEW
     
+    func setUpTableView() {
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableview.frame.size.width, height: 1))
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allReviews.count
     }
@@ -91,15 +92,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - LOAD DATA
 
     func loadValues(id: String, finished: @escaping () -> Void) {
-        
-        
         Database.database().reference().child("cafes").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-        //Database.database().reference().child("cafes").child(id).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                print("FOUND DICT VALUE \(dict["latitude"])")
                 if let name = dict["name"] as? String,
                     let lat = dict["latitude"] as? Double,
                     let long = dict["longitude"] as? Double {
+                    self.name.text = name
                     self.cafeData.coordinates.latitude = lat
                     self.cafeData.coordinates.longitude = long
                     

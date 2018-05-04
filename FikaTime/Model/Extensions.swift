@@ -17,8 +17,13 @@ extension UIImageView {
 }
 
 extension UIButton {
-    func roundedButton() {
+    func roundButton() {
         self.layer.cornerRadius = self.frame.size.width/2
+        self.clipsToBounds = true
+    }
+    
+    func roundedCorners() {
+        self.layer.cornerRadius = 15
         self.clipsToBounds = true
     }
 }
