@@ -14,7 +14,8 @@ import FirebaseDatabase
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     let locationManager = CLLocationManager()
-    var ref: DatabaseReference!
+    //var ref: DatabaseReference!
+    let ref = Database.database().reference()
     var databaseHandle: DatabaseHandle!
     var allCafes = [Cafe]()
     var rating: Double!
@@ -31,7 +32,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         testFunc {
             print("Doing more stuff")
-            //self.createAnnotations()
         }
     }
     
@@ -43,7 +43,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
@@ -61,7 +60,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func testFunc(finished: @escaping () -> Void) {
-        ref = Database.database().reference()
+        //ref = Database.database().reference()
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
@@ -81,7 +80,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         //Create annotations
                         self.createAnnotations()
                     })
-                    
                 } else {
                     print("Found nil values for \(id)")
                 }
@@ -101,14 +99,3 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

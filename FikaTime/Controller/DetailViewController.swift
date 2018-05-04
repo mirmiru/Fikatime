@@ -50,6 +50,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.isNavigationBarHidden = true
         //TEST
         print("Received ID: \(cafeId)")
+        
         loadValues(id: cafeId)
         
         tableview.delegate = self
@@ -57,27 +58,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
         
         getUrls()
-        //databaseListener()
     }
-    
-    func databaseListener() {
-        /*
-        ref = Database.database().reference()
-        
-        databaseHandle = ref.child("reviews").observe(.value) { (snapshot) in
-            for child in snapshot.children.allObjects {
-                let snap = child as! DataSnapshot
-                if let dict = snap.value as? [String: String] {
-                    print(dict)
-                    self.reviewsData.append(dict)
-                }
-            self.tableview.reloadData()
-            }
-        }
- */
-    }
-    
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -149,7 +130,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error)
                 return
             }
-            
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
                     self.testArray.append(image)
@@ -162,7 +142,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func getUrls() {
-        Database.database().reference().child("images").child("-LBMKiKn46ahlEu2dNrf").observeSingleEvent(of: .value) { (snapshot) in
+        Database.database().reference().child("images").child(self.cafeId).observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 if let snap = child as? DataSnapshot {
                     print("SNAP: \(snap)")
@@ -196,7 +176,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

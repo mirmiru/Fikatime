@@ -16,6 +16,7 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var reviewTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var photoButton: UIButton!
     
     //Firebase database and storage
     var ref:DatabaseReference!
@@ -66,7 +67,7 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
             do {
                 let url = URL(fileURLWithPath: cachedImagePath)
                 try data.write(to: url)
-                //photoButton.isHidden = true
+                photoButton.isHidden = true
             } catch {
                 NSLog("Write failed.")
             }
@@ -76,10 +77,10 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         uploadData()
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func uploadData() {
-        
         let imageName = NSUUID().uuidString
         let storageRef = storage.reference().child("\(imageName).png")
         if let uploadData = UIImagePNGRepresentation(imageView.image!) {

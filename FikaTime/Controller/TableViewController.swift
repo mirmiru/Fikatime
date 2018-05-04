@@ -38,6 +38,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Prepare for segue to detail view
+        let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
+        if let id = allCafes[indexPath.row].id {
+            destination.cafeId = id
+        }
+        self.present(destination, animated: true, completion: nil)
+    }
+    
     func databaseListener(finished: @escaping () -> Void) {
         ref = Database.database().reference()
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in

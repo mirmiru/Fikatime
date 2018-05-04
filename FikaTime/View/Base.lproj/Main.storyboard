@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="-23.199999999999999" y="914.392803598201"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--DetailView-->
         <scene sceneID="01k-dr-ugE">
             <objects>
-                <viewController id="TZh-kb-h8m" customClass="DetailViewController" customModule="FikaTime" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailView" title="DetailView" id="TZh-kb-h8m" customClass="DetailViewController" customModule="FikaTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YUc-Sb-OZd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,18 +229,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lGg-Lo-CHT">
-                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lGg-Lo-CHT">
+                                                    <rect key="frame" x="15" y="0.0" width="32" height="22.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cf7-2A-aAB">
-                                                    <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cf7-2A-aAB">
+                                                    <rect key="frame" x="15" y="22.5" width="40.5" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -400,6 +400,7 @@
                         <outlet property="imageView" destination="3ko-M0-2Ai" id="NjP-bV-6AK"/>
                         <outlet property="locationLabel" destination="GhF-dJ-OOA" id="PKi-7l-pcS"/>
                         <outlet property="nameLabel" destination="fcI-nj-OIM" id="VRK-Y7-P15"/>
+                        <outlet property="photoButton" destination="Lah-p4-Ww4" id="CB3-ld-14X"/>
                         <outlet property="reviewTextView" destination="dtf-Zd-giG" id="rHJ-Qe-cWl"/>
                     </connections>
                 </viewController>
@@ -563,7 +564,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" red="0.84799333759999995" green="0.77162443839999995" blue="0.6517570359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7ei-cl-yVp" firstAttribute="trailing" secondItem="nIc-P6-8uo" secondAttribute="trailing" constant="16" id="Fak-6y-Gxj"/>
                             <constraint firstItem="AYF-jg-7zl" firstAttribute="top" secondItem="nIc-P6-8uo" secondAttribute="bottom" constant="8" id="IZL-Qb-sH7"/>

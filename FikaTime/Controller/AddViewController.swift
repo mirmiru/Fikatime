@@ -41,7 +41,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }()
     
     //Firebase database and storage
-    var ref:DatabaseReference!
+    //var ref:DatabaseReference!
+    let ref = Database.database().reference()
     //var database: DataStorage!
     let storage = Storage.storage()
     
@@ -63,15 +64,18 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         photoButton.roundedButton()
         containerView.setShadow(color: UIColor.darkGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 10)
         
-        ref = Database.database().reference()
+        //ref = Database.database().reference()
         
         //CAMERA
+        /*
         if let image = UIImage(contentsOfFile: cachedImagePath) {
             imageImageview.image = image
             enteredImage = image
         } else {
             NSLog("No cached image found.")
+            imageImageview.image = #imageLiteral(resourceName: "background-beverage-breakfast-414645")
         }
+        */
     }
     
     //Get current location

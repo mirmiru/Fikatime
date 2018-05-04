@@ -34,6 +34,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - DATABASE LISTENER
 
     func databaseListener() {
+        self.testArray.removeAll()
+        
         ref = Database.database().reference()
         
         //Retrieve data AND listen for changes
