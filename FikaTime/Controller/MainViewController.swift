@@ -11,14 +11,11 @@ import FirebaseDatabase
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //DUMMY DATA
-    //var dummydata : [String] = []
     var testArray = [Cafe]()
     var rating: Double!
     
     //Firebase
     var ref: DatabaseReference!
-    //var database: DataStorage!
     var databaseHandle: DatabaseHandle?
 
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +28,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         databaseListener()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        //testArray.removeAll()
+    }
+    
     //MARK: - DATABASE LISTENER
 
     func databaseListener() {
@@ -38,8 +39,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         ref = Database.database().reference()
         
-        //Retrieve data AND listen for changes
-       databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
+        databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
             self.testArray.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
@@ -50,21 +50,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let dict = snap.value as? [String: Any] {
                     let name = dict["name"] as! String
                     cafe.name = name
-                    //self.testArray.append(cafe)
                 }
                 
-                //TEST Get rating
                 self.loadRating(cafe: snap, finished: {
                     cafe.rating = self.rating
                     print("GOT RATING: \(cafe.rating)")
                     self.testArray.append(cafe)
-                    
-                    self.sortData()
-                    
+                    self.testArray = self.sortData()
                     self.tableView.reloadData()
                 })
-                
-               // self.tableView.reloadData()
             }
         }
     }
@@ -93,25 +87,59 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return testArray.count
     }
     
+    /*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "segueDetail", sender: indexPath)
+    }
+ */
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMain")
-        cell?.textLabel?.text = testArray[indexPath.row].name
-        cell?.detailTextLabel?.text = testArray[indexPath.row].rating?.description
+        if let rating = testArray[indexPath.row].rating,
+            let text = testArray[indexPath.row].name {
+            cell?.textLabel?.text = text
+            cell?.detailTextLabel?.text = "\(rating) ★"
+        }
         return cell!
     }
     
-    func sortData() {
+    func sortData() -> [Cafe] {
         testArray.sort(by: { $0.rating! > $1.rating! })
+        
+        //More than 5 cafes
+        if testArray.count > 5 {
+            var finalArray = [Cafe]()
+            for i in 0...4 {
+                finalArray.append(testArray[i])
+            }
+            return finalArray
+        }
+        return testArray
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let destinationVC = segue.destination as? DetailViewController {
             if let index = tableView.indexPathForSelectedRow?.row {
                 destinationVC.cafeId = testArray[index].id
+                destinationVC.testValue = testArray[index].name
             }
         }
+        
+        /*
+        if (segue.identifier == "segueDetail") {
+            let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
+        
+//            if let destination = segue.destination as? DetailViewController {
+                if let index = sender as? IndexPath {
+                    print("SEGUE: \(testArray[index.row].id)")
+                    destination.cafeId = testArray[index.row].id
+                }
+        }
+ */
     }
+ 
 
 }

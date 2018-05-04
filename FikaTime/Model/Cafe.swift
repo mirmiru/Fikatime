@@ -13,10 +13,12 @@ struct CafeReview {
     var review: String
 }
 
+/*
 struct CafeCoordinates {
     var latitude: Double
     var longitude: Double
 }
+ */
 
 struct CafeImage {
     //dict: user: image
@@ -28,8 +30,11 @@ struct Cafe {
     var name: String?
     var rating: Double?
     var coordinates: CafeCoordinates
-    //var allReviews: [CafeReview]?
-    //let allImages: [CafeImage]?
+    
+    struct CafeCoordinates {
+        var latitude: Double
+        var longitude: Double
+    }
     
     
     init(id: String? = nil, name: String? = nil, rating: Double? = nil, lat: Double = 0, long: Double = 0) {

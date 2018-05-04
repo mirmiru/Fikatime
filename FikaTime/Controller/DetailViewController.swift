@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import FirebaseDatabase
 import FirebaseStorage
 
@@ -20,6 +21,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var locationLabel: UILabel!
     
     //Firebase
     var ref: DatabaseReference!
@@ -28,6 +30,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var allReviews = [Review]()
     
     //Variables
+    var cafeData = Cafe()
+    var testValue: String?
     var cafeId: String!
     var testArray = [UIImage]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -45,13 +49,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         scrollView.bringSubview(toFront: pageControl)
         self.navigationController?.isNavigationBarHidden = true
         //TEST
         print("Received ID: \(cafeId)")
-        
-        loadValues(id: cafeId)
+        print("Received NAME: \(testValue)")
+
+        loadValues(id: cafeId) {
+                print("GETLOCATION")
+                //self.getLocation()
+        }
         
         tableview.delegate = self
         tableview.dataSource = self
@@ -82,13 +89,27 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: - LOAD DATA
-    
-    func loadValues(id: String) {
-        Database.database().reference().child("cafes").child(cafeId).observeSingleEvent(of: .value) { (snapshot) in
+
+    func loadValues(id: String, finished: @escaping () -> Void) {
+        
+        
+        Database.database().reference().child("cafes").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+        //Database.database().reference().child("cafes").child(id).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                self.name.text = dict["name"] as? String
+                print("FOUND DICT VALUE \(dict["latitude"])")
+                if let name = dict["name"] as? String,
+                    let lat = dict["latitude"] as? Double,
+                    let long = dict["longitude"] as? Double {
+                    self.cafeData.coordinates.latitude = lat
+                    self.cafeData.coordinates.longitude = long
+                    
+                    DispatchQueue.main.async {
+                        self.getLocation(lat: lat, long: long)
+                    }
+                }
             }
-        }
+        })
+
         Database.database().reference().child("reviews").child(cafeId).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
@@ -139,6 +160,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         task.resume()
+    }
+    
+    func getLocation(lat: Double, long: Double) {
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: lat, longitude: long)
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let placemark = placemarks?.last {
+                if let streetName = placemark.thoroughfare,
+                    let streetNr = placemark.subThoroughfare,
+                    let locCity = placemark.locality,
+                    let adminArea = placemark.administrativeArea {
+                    
+                    DispatchQueue.main.async {
+                        self.locationLabel.text = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
+                    }
+                }
+            }
+        }
     }
     
     func getUrls() {

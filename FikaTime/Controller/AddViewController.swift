@@ -56,15 +56,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     let KEY_LAT = "latitude"
     let KEY_LONG = "longitude"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //database = DataStorage()
         photoButton.roundedButton()
         containerView.setShadow(color: UIColor.darkGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 10)
-        
-        //ref = Database.database().reference()
         
         //CAMERA
         /*
@@ -106,7 +101,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
 
-        //NAME, STREETNAME STREETNR, CITY
         if let locName = placemark.name,
             let streetName = placemark.thoroughfare,
             let streetNr = placemark.subThoroughfare,
@@ -114,10 +108,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
             let adminArea = placemark.administrativeArea {
             address = "\(locName), \(streetName) \(streetNr), \(locCity), \(adminArea)"
             locationLabel.text = address
-            //print("COMPOUND ADDRESS: \(self.address)")
         }
         
-        //Save lat & long
         lat = placemark.location?.coordinate.latitude
         long = placemark.location?.coordinate.longitude
     }

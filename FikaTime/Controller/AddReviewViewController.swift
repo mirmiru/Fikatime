@@ -18,9 +18,7 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var photoButton: UIButton!
     
-    //Firebase database and storage
-    var ref:DatabaseReference!
-    //var database: DataStorage!
+    let ref = Database.database().reference()
     let storage = Storage.storage()
     
     var cafeId: String!
@@ -30,9 +28,6 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        ref = Database.database().reference()
-        
-        // Do any additional setup after loading the view.
     }
     
     func setViews() {
@@ -89,17 +84,12 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
                     print(error)
                     return
                 } else {
-                    print("No error in uploadData")
-                    print(metadata)
-                    //Store image with cafe info in firebase
                     if let imageUrl = metadata?.downloadURL()?.absoluteString {
-                        //TODO: FIX STATIC VALUES
+                        //TODO: FIX STATIC VALUE FOR USER
                         print("ID \(self.cafeId)")
                         print("IMG URL \(imageUrl)")
                         print("REF \(self.ref)")
-                        //self.ref.child("images").child(self.cafeId).child("user").setValue(imageUrl)
                         self.ref.child("images").child(self.cafeId).child("test").setValue(imageUrl)
-                        //self.ref.child("images").child(self.cafeId).setValue(imageUrl)
                     }
                 }
             })
