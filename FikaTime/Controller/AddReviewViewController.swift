@@ -17,6 +17,8 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var reviewTextView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     let ref = Database.database().reference()
     let storage = Storage.storage()
@@ -31,6 +33,9 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func setViews() {
+        saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
+        saveButton.roundedCorners()
+        photoButton.roundButton()
         nameLabel.text = cafeName
         locationLabel.text = "Address non static."
     }

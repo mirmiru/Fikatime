@@ -57,7 +57,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         setUpTableView()
-        containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
+        //containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
         
         getUrls()
     }
@@ -130,6 +130,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let imageView = UIImageView(frame: frame)
             imageView.contentMode = UIViewContentMode.scaleAspectFill
             imageView.image = testArray[index]
+            
             self.scrollView.addSubview(imageView)
         }
         
