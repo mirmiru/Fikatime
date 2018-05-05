@@ -24,11 +24,18 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var iconWifi: UIButton!
+    @IBOutlet weak var iconVeg: UIButton!
+    @IBOutlet weak var toiletIcon: UIButton!
+    
     //Cafe data
-    var enteredName : String?
-    var enteredReview : String?
-    var enteredImage : UIImage?
+    var enteredName: String?
+    var enteredReview: String?
+    var enteredImage: UIImage?
     var enteredRating: Double?
+    var hasWifi: Bool = false
+    var hasVegan: Bool = false
+    var hasToilet: Bool = false
     var lat: Double?
     var long: Double?
     var address: String?
@@ -42,39 +49,54 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }()
     
     //Firebase database and storage
-    //var ref:DatabaseReference!
     let ref = Database.database().reference()
-    //var database: DataStorage!
     let storage = Storage.storage()
     
     //Database variables
     let NODE_CAFES = "cafes"
     let NODE_RATINGS = "ratings"
     let NODE_REVIEWS = "reviews"
+    let NODE_DETAILS = "details"
     
     let KEY_NAME = "name"
     let KEY_USER = "user"       //TODO: Replace static value with user id/name
     let KEY_LAT = "latitude"
     let KEY_LONG = "longitude"
+    let KEY_WIFI = "hasWifi"
+    let KEY_VEG = "hasVegan"
+    let KEY_TOILET = "hasToilet"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         photoButton.roundButton()
+        containerView.bringSubview(toFront: saveButton)
         saveButton.roundedCorners()
         saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
         
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
-        
-        //CAMERA
-        /*
-        if let image = UIImage(contentsOfFile: cachedImagePath) {
-            imageImageview.image = image
-            enteredImage = image
+    }
+    
+    @IBAction func wifiPressed(_ sender: Any) {
+        if iconWifi.isChosen() {
+            iconWifi.setBackgroundImage(#imageLiteral(resourceName: "icon_wifi_1"), for: .selected)
+            hasWifi = true
         } else {
-            NSLog("No cached image found.")
-            imageImageview.image = #imageLiteral(resourceName: "background-beverage-breakfast-414645")
+            iconWifi.setBackgroundImage(#imageLiteral(resourceName: "icon_wifi_0"), for: .normal)
+            hasWifi = false
         }
-        */
+    }
+    
+    @IBAction func vegPressed(_ sender: Any) {
+        if iconVeg.isChosen() {
+            iconVeg.setBackgroundImage(#imageLiteral(resourceName: "icon_vegan_1"), for: .selected)
+            hasVegan = true
+        } else {
+            iconVeg.setBackgroundImage(#imageLiteral(resourceName: "icon_vegan_0"), for: .normal)
+            hasVegan = false
+        }
+    }
+    
+    @IBAction func toiletPressed(_ sender: Any) {
     }
     
     //Get current location
@@ -104,18 +126,16 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
-
+        
         if let streetName = placemark.thoroughfare,
             let streetNr = placemark.subThoroughfare,
             let locCity = placemark.locality,
             let adminArea = placemark.administrativeArea {
-            
-            address = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
-            locationLabel.text = address
-        }
-        
-        lat = placemark.location?.coordinate.latitude
-        long = placemark.location?.coordinate.longitude
+                address = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
+                locationLabel.text = self.address
+            }
+            lat = placemark.location?.coordinate.latitude
+            long = placemark.location?.coordinate.longitude
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -161,6 +181,9 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         enteredName = nameTextfield.text
         enteredReview = reviewTextview.text
         enteredRating = ratingBar.rating
+        if iconWifi.isChosen() {
+            hasWifi = true
+        }
     }
     
     @IBAction func cancelButtonClick(_ sender: Any) {
@@ -188,6 +211,11 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         //Store rating
         ref.child(NODE_RATINGS).child(CAFE_ID.key).child(KEY_USER).setValue(enteredRating)
+        
+        //Store values
+        ref.child(NODE_CAFES).child(CAFE_ID.key).child(NODE_DETAILS).child(KEY_WIFI).setValue(hasWifi)
+        ref.child(NODE_CAFES).child(CAFE_ID.key).child(NODE_DETAILS).child(KEY_VEG).setValue(hasVegan)
+        ref.child(NODE_CAFES).child(CAFE_ID.key).child(NODE_DETAILS).child(KEY_TOILET).setValue(hasToilet)
         
         //Store photo
         let imageName = NSUUID().uuidString

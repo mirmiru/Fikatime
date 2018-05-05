@@ -87,12 +87,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return testArray.count
     }
     
-    /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "segueDetail", sender: indexPath)
-    }
- */
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMain")
         if let rating = testArray[indexPath.row].rating,
@@ -120,26 +114,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let destinationVC = segue.destination as? DetailViewController {
             if let index = tableView.indexPathForSelectedRow?.row {
                 destinationVC.cafeId = testArray[index].id
                 destinationVC.testValue = testArray[index].name
             }
         }
-        
-        /*
-        if (segue.identifier == "segueDetail") {
-            let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
-        
-//            if let destination = segue.destination as? DetailViewController {
-                if let index = sender as? IndexPath {
-                    print("SEGUE: \(testArray[index.row].id)")
-                    destination.cafeId = testArray[index.row].id
-                }
-        }
- */
     }
- 
-
 }

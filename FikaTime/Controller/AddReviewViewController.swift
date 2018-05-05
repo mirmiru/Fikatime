@@ -30,6 +30,8 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        print("Got ID \(cafeId)")
+        print("Got name \(cafeName)")
     }
     
     func setViews() {
@@ -81,6 +83,10 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func uploadData() {
+        //ADD REVIEW
+        //Store review
+        ref.child("reviews").child(self.cafeId).child("test").setValue(reviewTextView.text)
+        
         let imageName = NSUUID().uuidString
         let storageRef = storage.reference().child("\(imageName).png")
         if let uploadData = UIImagePNGRepresentation(imageView.image!) {

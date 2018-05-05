@@ -19,6 +19,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var wifiIcon: UIImageView!
+    @IBOutlet weak var vegIcon: UIImageView!
+    @IBOutlet weak var toiletIcon: UIImageView!
     
     //Firebase
     var ref: DatabaseReference!
@@ -45,7 +48,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         scrollView.bringSubview(toFront: pageControl)
         self.navigationController?.isNavigationBarHidden = true
         
@@ -57,8 +60,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         setUpTableView()
-        //containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
-        
         getUrls()
     }
 
@@ -96,13 +97,25 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let dict = snapshot.value as? [String: Any] {
                 if let name = dict["name"] as? String,
                     let lat = dict["latitude"] as? Double,
-                    let long = dict["longitude"] as? Double {
-                    self.name.text = name
+                    let long = dict["longitude"] as? Double,
+                    let details = dict["details"] as? [String: Int] {
+                    print("DETAILS: \(details)")
+                    //self.name.text = name
                     self.cafeData.coordinates.latitude = lat
                     self.cafeData.coordinates.longitude = long
                     
                     DispatchQueue.main.async {
+                        self.name.text = name
                         self.getLocation(lat: lat, long: long)
+                        if details["hasWifi"] == 1 {
+                            self.wifiIcon.image = #imageLiteral(resourceName: "icon_wifi_1")
+                        }
+                        if details["hasVegan"] == 1 {
+                            self.vegIcon.image = #imageLiteral(resourceName: "icon_vegan_1")
+                        }
+                        if details["hasToilet"] == 1 {
+                            self.toiletIcon.image = #imageLiteral(resourceName: "icon_toilet_1")
+                        }
                     }
                 }
             }
@@ -170,7 +183,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let streetNr = placemark.subThoroughfare,
                     let locCity = placemark.locality,
                     let adminArea = placemark.administrativeArea {
-                    
                     DispatchQueue.main.async {
                         self.locationLabel.text = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
                     }
@@ -187,8 +199,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     if let url = snap.value as? String {
                         print("URL \(url)")
-                        
-                        //TEST
+
                         self.downloadImage(from: url)
                         
                         let storageRef = self.storage.reference(forURL: url)
@@ -219,8 +230,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddReviewViewController {
             destinationVC.cafeId = self.cafeId
-            destinationVC.cafeName = self.name.text
-            //destinationVC.cafeLocation = 
+            //destinationVC.cafeName = self.name.text
         }
     }
 }

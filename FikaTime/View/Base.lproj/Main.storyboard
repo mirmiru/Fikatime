@@ -144,20 +144,10 @@
                                         <color key="pageIndicatorTintColor" red="0.84799333759999995" green="0.77162443839999995" blue="0.6517570359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="currentPageIndicatorTintColor" red="0.58537131549999999" green="0.365863204" blue="0.1573423743" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </pageControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhb-0N-xoZ">
-                                        <rect key="frame" x="76" y="348" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMB-2n-TTB">
-                                        <rect key="frame" x="38" y="342" width="31" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wayne's Coffee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-Cu-Ih6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-Cu-Ih6">
                                         <rect key="frame" x="8" y="253" width="359" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Cafe name"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -169,6 +159,18 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_vegan_0" translatesAutoresizingMaskIntoConstraints="NO" id="u4e-hT-TKA">
+                                        <rect key="frame" x="170" y="332" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_toilet_0" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-0f-cPK">
+                                        <rect key="frame" x="221" y="332" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_wifi_0" translatesAutoresizingMaskIntoConstraints="NO" id="gMB-2n-TTB">
+                                        <rect key="frame" x="122" y="332" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -218,6 +220,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.92540913820266724" green="0.92554211616516113" blue="0.92537993192672729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -240,6 +243,9 @@
                         <outlet property="pageControl" destination="SSA-Qd-vKq" id="uox-pl-30w"/>
                         <outlet property="scrollView" destination="9xr-Vg-V4h" id="UQH-zM-PBY"/>
                         <outlet property="tableview" destination="027-od-S9b" id="7SV-tz-eN7"/>
+                        <outlet property="toiletIcon" destination="a0C-0f-cPK" id="Bur-cq-mYj"/>
+                        <outlet property="vegIcon" destination="u4e-hT-TKA" id="T7H-7V-G9n"/>
+                        <outlet property="wifiIcon" destination="gMB-2n-TTB" id="yZs-tC-Iuy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heD-gV-tiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -477,7 +483,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Location" borderStyle="roundedRect" placeholder="Cafe name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-8v-ehT">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Location" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-8v-ehT">
                                         <rect key="frame" x="0.0" y="150" width="114" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Cafe name"/>
@@ -496,10 +502,44 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cp-Zy-1d7">
                                         <rect key="frame" x="8" y="180" width="327" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="No location fetched."/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4n-UP-uL3">
+                                        <rect key="frame" x="111" y="230" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" backgroundImage="icon_wifi_0">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="wifiPressed:" destination="N0B-de-A1M" eventType="touchUpInside" id="L7j-Eo-JRT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2m-MT-0fz">
+                                        <rect key="frame" x="154" y="228" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" backgroundImage="icon_vegan_0">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="vegPressed:" destination="N0B-de-A1M" eventType="touchUpInside" id="kvr-Fu-aQ4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJq-Y0-36J">
+                                        <rect key="frame" x="197" y="230" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" backgroundImage="icon_toilet_0">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toiletPressed:" destination="N0B-de-A1M" eventType="touchUpInside" id="HNy-EJ-ZYB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -525,6 +565,8 @@
                     <connections>
                         <outlet property="cancelButton" destination="iAV-Rt-OP2" id="63J-pB-llk"/>
                         <outlet property="containerView" destination="zfh-TD-tbA" id="obz-cS-zoS"/>
+                        <outlet property="iconVeg" destination="A2m-MT-0fz" id="fVB-En-mdd"/>
+                        <outlet property="iconWifi" destination="d4n-UP-uL3" id="57r-3B-PGy"/>
                         <outlet property="imageImageview" destination="j2j-TG-I9E" id="ysh-uz-fdx"/>
                         <outlet property="locationLabel" destination="2Cp-Zy-1d7" id="NMY-qh-Qam"/>
                         <outlet property="nameTextfield" destination="9a2-FK-OgE" id="fCq-m2-CGj"/>
@@ -532,6 +574,7 @@
                         <outlet property="ratingBar" destination="Hml-3q-89i" id="TjE-0u-KtK"/>
                         <outlet property="reviewTextview" destination="rER-Z5-Gi3" id="j37-RS-ezR"/>
                         <outlet property="saveButton" destination="lKF-PX-ZWS" id="iGR-2P-8YS"/>
+                        <outlet property="toiletIcon" destination="SJq-Y0-36J" id="02J-UA-a8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybp-tP-Oal" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -616,6 +659,9 @@
     </scenes>
     <resources>
         <image name="background-beverage-breakfast-414645" width="5997" height="4000"/>
+        <image name="icon_toilet_0" width="24" height="24"/>
+        <image name="icon_vegan_0" width="24" height="24"/>
+        <image name="icon_wifi_0" width="24" height="24"/>
         <image name="icons8-screenshot-50" width="50" height="50"/>
         <image name="top" width="332" height="284"/>
     </resources>

@@ -45,3 +45,15 @@ extension UITextView {
         self.textColor = UIColor.lightGray
     }
 }
+
+extension UIButton {
+    func isChosen() -> Bool {
+        if self.isSelected {
+                self.isSelected = false
+                return false
+            } else {
+                self.isSelected = true
+                return true
+            }
+        }
+}
