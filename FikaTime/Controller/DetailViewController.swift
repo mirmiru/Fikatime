@@ -33,6 +33,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var cafeData = Cafe()
     var testValue: String?
     var cafeId: String!
+    var cafeName: String?
+    var cafeAddress: String?
     var testArray = [UIImage]()
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
@@ -99,10 +101,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let lat = dict["latitude"] as? Double,
                     let long = dict["longitude"] as? Double,
                     let details = dict["details"] as? [String: Int] {
-                    print("DETAILS: \(details)")
-                    //self.name.text = name
-                    self.cafeData.coordinates.latitude = lat
-                    self.cafeData.coordinates.longitude = long
+                        self.cafeName = name
+                        self.name.text = self.cafeName
+                        self.cafeData.coordinates.latitude = lat
+                        self.cafeData.coordinates.longitude = long
                     
                     DispatchQueue.main.async {
                         self.name.text = name
@@ -183,8 +185,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let streetNr = placemark.subThoroughfare,
                     let locCity = placemark.locality,
                     let adminArea = placemark.administrativeArea {
+                    self.cafeAddress = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
                     DispatchQueue.main.async {
-                        self.locationLabel.text = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
+                        self.locationLabel.text = self.cafeAddress
                     }
                 }
             }
@@ -230,7 +233,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddReviewViewController {
             destinationVC.cafeId = self.cafeId
-            //destinationVC.cafeName = self.name.text
+            destinationVC.cafeName = self.cafeName
+            destinationVC.cafeLocation = self.cafeAddress
         }
     }
 }

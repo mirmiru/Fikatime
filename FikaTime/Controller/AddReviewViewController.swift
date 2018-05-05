@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import Cosmos
 
 class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -19,6 +20,7 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var ratingBar: CosmosView!
     
     let ref = Database.database().reference()
     let storage = Storage.storage()
@@ -27,19 +29,24 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     var cafeName: String!
     var cafeLocation: String!
 
+    //Database variables
+    let NODE_IMAGES = "images"
+    let NODE_RATINGS = "ratings"
+    let NODE_REVIEWS = "reviews"
+    let KEY_USER = "UserName"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViews()
+        setUp()
         print("Got ID \(cafeId)")
-        print("Got name \(cafeName)")
     }
     
-    func setViews() {
+    func setUp() {
         saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
         saveButton.roundedCorners()
         photoButton.roundButton()
         nameLabel.text = cafeName
-        locationLabel.text = "Address non static."
+        locationLabel.text = cafeLocation
     }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
@@ -82,10 +89,11 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - SAVE DATA
+    
     func uploadData() {
-        //ADD REVIEW
-        //Store review
-        ref.child("reviews").child(self.cafeId).child("test").setValue(reviewTextView.text)
+        ref.child(NODE_RATINGS).child(self.cafeId).child(KEY_USER).setValue(ratingBar.rating)
+        ref.child(NODE_REVIEWS).child(self.cafeId).child(KEY_USER).setValue(reviewTextView.text)
         
         let imageName = NSUUID().uuidString
         let storageRef = storage.reference().child("\(imageName).png")
@@ -100,11 +108,12 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
                         print("ID \(self.cafeId)")
                         print("IMG URL \(imageUrl)")
                         print("REF \(self.ref)")
-                        self.ref.child("images").child(self.cafeId).child("test").setValue(imageUrl)
+                        self.ref.child(self.NODE_IMAGES).child(self.cafeId).child(self.KEY_USER).setValue(imageUrl)
                     }
                 }
             })
         }
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func undoButtonClicked(_ sender: Any) {
@@ -113,9 +122,5 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    // TODO: - Function for adding data
-
 }

@@ -13,9 +13,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var testArray = [Cafe]()
     var rating: Double!
+    var allRatings = [Double]()
+    var cafeId: String!
     
     //Firebase
     var ref: DatabaseReference!
+    //let ref = Database.database().reference()
     var databaseHandle: DatabaseHandle?
 
     @IBOutlet weak var tableView: UITableView!
@@ -45,6 +48,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let snap = child as! DataSnapshot
                 print("SNAP: \(snap.key)")
                 var cafe = Cafe()
+                self.cafeId = snap.key
                 cafe.id = snap.key
                 
                 if let dict = snap.value as? [String: Any] {
@@ -53,8 +57,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 self.loadRating(cafe: snap, finished: {
-                    cafe.rating = self.rating
-                    print("GOT RATING: \(cafe.rating)")
+
+                    //GET SUM n AVERAGE
+                    let sum = self.allRatings.reduce(0) { $0 + $1 }
+                    let average = sum/Double(self.allRatings.count)
+                    //cafe.rating = self.rating
+                    cafe.rating = average.roundTo(decimals: 1)
+                    self.allRatings.removeAll()
                     self.testArray.append(cafe)
                     self.testArray = self.sortData()
                     self.tableView.reloadData()
@@ -66,13 +75,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
         Database.database().reference().child("ratings").child(cafe.key).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
+                print("RATING TEST \(child)")
                 let snap = child as! DataSnapshot
                 if let r = snap.value as? Double {
                     self.rating = r
+                    self.allRatings.append(r)
                 } else {
                     print("No rating found.")
                 }
             }
+            print(self.allRatings.count)
             finished()
         })
     }

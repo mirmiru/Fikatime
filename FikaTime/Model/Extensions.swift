@@ -57,3 +57,10 @@ extension UIButton {
             }
         }
 }
+
+extension Double {
+    func roundTo(decimals: Int) -> Double {
+        let divisor = pow(10.0, Double(decimals))
+        return (self * divisor).rounded() / divisor
+    }
+}

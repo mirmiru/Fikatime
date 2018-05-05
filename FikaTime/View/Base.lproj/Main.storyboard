@@ -201,18 +201,18 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNm-DV-Igp" id="qgz-km-xJY">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lGg-Lo-CHT">
-                                                    <rect key="frame" x="15" y="0.0" width="32" height="22.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="32" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cf7-2A-aAB">
-                                                    <rect key="frame" x="15" y="22.5" width="41.5" height="21"/>
+                                                    <rect key="frame" x="15" y="22" width="41" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
                                                     <color key="textColor" red="0.62437432945939086" green="0.49131842042221602" blue="0.39005462807963509" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -386,6 +386,7 @@
                         <outlet property="locationLabel" destination="GhF-dJ-OOA" id="PKi-7l-pcS"/>
                         <outlet property="nameLabel" destination="fcI-nj-OIM" id="VRK-Y7-P15"/>
                         <outlet property="photoButton" destination="Lah-p4-Ww4" id="CB3-ld-14X"/>
+                        <outlet property="ratingBar" destination="ris-5b-5Kd" id="mOK-u4-y3G"/>
                         <outlet property="reviewTextView" destination="dtf-Zd-giG" id="rHJ-Qe-cWl"/>
                         <outlet property="saveButton" destination="GwV-XY-x2K" id="rYl-on-5Ac"/>
                     </connections>

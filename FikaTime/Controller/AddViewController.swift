@@ -48,18 +48,17 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         return manager
     }()
     
-    //Firebase database and storage
     let ref = Database.database().reference()
     let storage = Storage.storage()
     
-    //Database variables
+    //Database
     let NODE_CAFES = "cafes"
+    let NODE_IMAGES = "images"
     let NODE_RATINGS = "ratings"
     let NODE_REVIEWS = "reviews"
     let NODE_DETAILS = "details"
-    
     let KEY_NAME = "name"
-    let KEY_USER = "user"       //TODO: Replace static value with user id/name
+    let KEY_USER = "user"       //TODO: Extend app by replacing static value with login user id
     let KEY_LAT = "latitude"
     let KEY_LONG = "longitude"
     let KEY_WIFI = "hasWifi"
@@ -68,11 +67,14 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+    }
+    
+    func setUp() {
         photoButton.roundButton()
         containerView.bringSubview(toFront: saveButton)
         saveButton.roundedCorners()
         saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
-        
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
     }
     
@@ -99,7 +101,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBAction func toiletPressed(_ sender: Any) {
     }
     
-    //Get current location
+    // MARK: - MAP
+    
     @IBAction func getLocation(_ sender: Any) {
         locationManager.requestWhenInUseAuthorization()
     }
@@ -142,6 +145,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         print("Error receiving location.")
     }
     
+    // MARK: - CAMERA
+    
     var cachedImagePath: String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
@@ -181,9 +186,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         enteredName = nameTextfield.text
         enteredReview = reviewTextview.text
         enteredRating = ratingBar.rating
-        if iconWifi.isChosen() {
-            hasWifi = true
-        }
     }
     
     @IBAction func cancelButtonClick(_ sender: Any) {
@@ -193,7 +195,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBAction func saveButtonClick(_ sender: Any) {
         grabData()
         
-        //Store unique id for later use AND update database
+        //Store unique id for later use
         let CAFE_ID = ref.child(NODE_CAFES).childByAutoId()
         
         //Store name
@@ -229,7 +231,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
                     print(metadata)
                     //Store image with cafe info in firebase
                     if let imageUrl = metadata?.downloadURL()?.absoluteString {
-                        self.ref.child("images").child(CAFE_ID.key).child(self.KEY_USER).setValue(imageUrl)
+                        self.ref.child(self.NODE_IMAGES).child(CAFE_ID.key).child(self.KEY_USER).setValue(imageUrl)
                     }
                 }
             })
@@ -243,7 +245,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     /*
