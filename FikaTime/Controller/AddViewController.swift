@@ -105,13 +105,12 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     func showLocationDetails(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
 
-        if let locName = placemark.name,
-            let streetName = placemark.thoroughfare,
+        if let streetName = placemark.thoroughfare,
             let streetNr = placemark.subThoroughfare,
             let locCity = placemark.locality,
             let adminArea = placemark.administrativeArea {
             
-            address = "\(locName), \(streetName) \(streetNr), \(locCity), \(adminArea)"
+            address = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
             locationLabel.text = address
         }
         
@@ -210,6 +209,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func swipeDownToReturn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

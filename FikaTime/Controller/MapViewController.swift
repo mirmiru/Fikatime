@@ -14,7 +14,7 @@ import FirebaseDatabase
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     let locationManager = CLLocationManager()
-    //var ref: DatabaseReference!
+    var clickedAnnotation: CustomAnnotation!
     let ref = Database.database().reference()
     var databaseHandle: DatabaseHandle!
     var allCafes = [Cafe]()
@@ -29,7 +29,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         map.delegate = self
         setUpMap()
-        
         testFunc {
             print("Doing more stuff")
         }
@@ -87,7 +86,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             finished()
         })
     }
-            
+    
+    /*
     func createAnnotations() {
         print("CreateAnnotations()")
         for c in allCafes {
@@ -98,4 +98,69 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             print("Added annotation \(annotation)")
         }
     }
+ */
+    
+    func createAnnotations() {
+        print("CreateAnnotations()")
+        for c in allCafes {
+            let annotation = CustomAnnotation()
+            annotation.title = c.name
+            if let rating = c.rating {
+                annotation.subtitle = "\(rating) ★"
+            }
+            annotation.id = c.id
+            annotation.coordinate = CLLocationCoordinate2DMake(c.coordinates.latitude, c.coordinates.longitude)
+            self.map.addAnnotation(annotation)
+            print("Added annotation \(annotation)")
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "pin"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -1, y: 1)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if control == view.rightCalloutAccessoryView {
+            clickedAnnotation = view.annotation as? CustomAnnotation
+            //performSegue(withIdentifier: "segueDetail", sender: self)
+            
+            //Prepare for segue to detail view
+            if let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as? DetailViewController {
+                destination.cafeId = clickedAnnotation.id
+                self.present(destination, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueDetail" {
+            
+            /*
+            if let destination = segue.destination as? DetailViewController {
+                destination.cafeId = clickedAnnotation.id
+            }
+ */
+        }
+    }
+ */
 }
+
+class CustomAnnotation: MKPointAnnotation {
+    var id: String?
+}
+
+
