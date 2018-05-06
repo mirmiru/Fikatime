@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		17AA46CE180FC02C3C7508B2 /* Pods_FikaTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A135B5BF5A205E0DF9AED7 /* Pods_FikaTime.framework */; };
 		A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502BAC72089CFAE009DCD07 /* Cafe.swift */; };
-		A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502BAC92089D102009DCD07 /* DataStorage.swift */; };
 		A502BACC2089E106009DCD07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A502BACB2089E106009DCD07 /* GoogleService-Info.plist */; };
 		A5609C852089E547009A42D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5609C842089E547009A42D5 /* MainViewController.swift */; };
 		A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5609C862089E595009A42D5 /* DetailViewController.swift */; };
@@ -31,7 +30,6 @@
 		3B60CA75F59EEEA3B238C6C3 /* Pods-FikaTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FikaTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime.release.xcconfig"; sourceTree = "<group>"; };
 		41AD0D98B726FC8650A37930 /* Pods-FikaTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FikaTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FikaTime/Pods-FikaTime.debug.xcconfig"; sourceTree = "<group>"; };
 		A502BAC72089CFAE009DCD07 /* Cafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
-		A502BAC92089D102009DCD07 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		A502BACB2089E106009DCD07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5609C842089E547009A42D5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A5609C862089E595009A42D5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				A502BAC72089CFAE009DCD07 /* Cafe.swift */,
-				A502BAC92089D102009DCD07 /* DataStorage.swift */,
 				A5E6960C208C97DF00DD004C /* Extensions.swift */,
 			);
 			path = Model;
@@ -295,7 +292,6 @@
 				A5E6960D208C97DF00DD004C /* Extensions.swift in Sources */,
 				A5C85F6E2099F3EF00634B65 /* AddReviewViewController.swift in Sources */,
 				A5CF4E0E209213B500311BFA /* TableViewController.swift in Sources */,
-				A502BACA2089D102009DCD07 /* DataStorage.swift in Sources */,
 				A5609C872089E595009A42D5 /* DetailViewController.swift in Sources */,
 				A502BAC82089CFAE009DCD07 /* Cafe.swift in Sources */,
 				A5609C852089E547009A42D5 /* MainViewController.swift in Sources */,
