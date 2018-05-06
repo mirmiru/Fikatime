@@ -31,7 +31,7 @@
                                     <constraint firstAttribute="height" constant="275" id="tqe-Or-V6W"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMain" textLabel="c3o-d4-qbY" detailTextLabel="29U-Wg-Ll0" style="IBUITableViewCellStyleValue1" id="50g-gn-qQe">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMain" textLabel="c3o-d4-qbY" detailTextLabel="29U-Wg-Ll0" style="IBUITableViewCellStyleValue1" id="50g-gn-qQe">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="50g-gn-qQe" id="b5w-9n-Etp">
@@ -86,8 +86,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Top 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avz-Yh-DXy">
-                                <rect key="frame" x="16" y="315.5" width="343" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="16" y="311.5" width="343" height="28"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -201,18 +201,18 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNm-DV-Igp" id="qgz-km-xJY">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lGg-Lo-CHT">
-                                                    <rect key="frame" x="15" y="0.0" width="32" height="22"/>
+                                                    <rect key="frame" x="15" y="0.0" width="32" height="22.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cf7-2A-aAB">
-                                                    <rect key="frame" x="15" y="22" width="41" height="21"/>
+                                                    <rect key="frame" x="15" y="22.5" width="41.5" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
                                                     <color key="textColor" red="0.62437432945939086" green="0.49131842042221602" blue="0.39005462807963509" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -413,6 +413,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background-beverage-breakfast-414645" translatesAutoresizingMaskIntoConstraints="NO" id="j2j-TG-I9E">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
@@ -423,7 +424,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rER-Z5-Gi3">
-                                        <rect key="frame" x="8" y="45" width="327" height="97"/>
+                                        <rect key="frame" x="8" y="52" width="327" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" hint="Write your review here."/>
@@ -432,9 +433,11 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so4-zi-Wtf">
-                                        <rect key="frame" x="250" y="151" width="85" height="30"/>
+                                        <rect key="frame" x="250" y="152" width="85" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Get location"/>
+                                        <state key="normal" title="Get location">
+                                            <color key="titleColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="getLocation:" destination="N0B-de-A1M" eventType="touchUpInside" id="ctD-or-knp"/>
                                         </connections>
@@ -452,7 +455,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hml-3q-89i" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="220" y="11" width="115" height="29"/>
+                                        <rect key="frame" x="220" y="16" width="115" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -484,32 +487,24 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Location" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-8v-ehT">
-                                        <rect key="frame" x="0.0" y="150" width="114" height="32"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-8v-ehT">
+                                        <rect key="frame" x="8" y="151" width="128" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Cafe name"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Mulberry Cafe" borderStyle="roundedRect" placeholder="Cafe name" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9a2-FK-OgE">
-                                        <rect key="frame" x="0.0" y="7" width="204" height="37"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Mulberry Cafe" placeholder="Cafe name" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9a2-FK-OgE">
+                                        <rect key="frame" x="8" y="8" width="213" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Cafe name"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cp-Zy-1d7">
-                                        <rect key="frame" x="8" y="180" width="327" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" hint="No location fetched."/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4n-UP-uL3">
-                                        <rect key="frame" x="111" y="230" width="35" height="35"/>
+                                        <rect key="frame" x="111" y="275" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="icon_wifi_0">
@@ -520,7 +515,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2m-MT-0fz">
-                                        <rect key="frame" x="154" y="228" width="35" height="35"/>
+                                        <rect key="frame" x="154" y="275" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="icon_vegan_0">
@@ -531,7 +526,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJq-Y0-36J">
-                                        <rect key="frame" x="197" y="230" width="35" height="35"/>
+                                        <rect key="frame" x="197" y="275" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="icon_toilet_0">
@@ -541,6 +536,21 @@
                                             <action selector="toiletPressed:" destination="N0B-de-A1M" eventType="touchUpInside" id="HNy-EJ-ZYB"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wifi / vegan / wc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5u-80-DJv">
+                                        <rect key="frame" x="8" y="246" width="327" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cp-Zy-1d7">
+                                        <rect key="frame" x="8" y="190" width="327" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="No location fetched."/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -566,16 +576,17 @@
                     <connections>
                         <outlet property="cancelButton" destination="iAV-Rt-OP2" id="63J-pB-llk"/>
                         <outlet property="containerView" destination="zfh-TD-tbA" id="obz-cS-zoS"/>
+                        <outlet property="iconToilet" destination="SJq-Y0-36J" id="02J-UA-a8c"/>
                         <outlet property="iconVeg" destination="A2m-MT-0fz" id="fVB-En-mdd"/>
                         <outlet property="iconWifi" destination="d4n-UP-uL3" id="57r-3B-PGy"/>
                         <outlet property="imageImageview" destination="j2j-TG-I9E" id="ysh-uz-fdx"/>
+                        <outlet property="locationButton" destination="2Cp-Zy-1d7" id="D9J-nd-OOm"/>
                         <outlet property="locationLabel" destination="2Cp-Zy-1d7" id="NMY-qh-Qam"/>
                         <outlet property="nameTextfield" destination="9a2-FK-OgE" id="fCq-m2-CGj"/>
                         <outlet property="photoButton" destination="30C-G8-PTe" id="jbX-ga-aE8"/>
                         <outlet property="ratingBar" destination="Hml-3q-89i" id="TjE-0u-KtK"/>
                         <outlet property="reviewTextview" destination="rER-Z5-Gi3" id="j37-RS-ezR"/>
                         <outlet property="saveButton" destination="lKF-PX-ZWS" id="iGR-2P-8YS"/>
-                        <outlet property="toiletIcon" destination="SJq-Y0-36J" id="02J-UA-a8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybp-tP-Oal" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,7 +613,7 @@
                                 <rect key="frame" x="16" y="75" width="343" height="29"/>
                                 <segments>
                                     <segment title="Map"/>
-                                    <segment title="List"/>
+                                    <segment title="List all"/>
                                 </segments>
                                 <color key="tintColor" red="0.58537131547927856" green="0.36586320400238037" blue="0.15734237432479858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>

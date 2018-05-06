@@ -50,17 +50,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scrollView.bringSubview(toFront: pageControl)
+        setUp()
+    }
+    
+    func setUp() {
         self.navigationController?.isNavigationBarHidden = true
-        
-        //TEST
-        print("Received ID: \(cafeId)")
-        
-        loadValues(id: cafeId) {
-                print("GETLOCATION")
-        }
-        
+        loadValues(id: cafeId) {}
         setUpTableView()
         getUrls()
     }

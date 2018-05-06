@@ -87,19 +87,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         })
     }
     
-    /*
-    func createAnnotations() {
-        print("CreateAnnotations()")
-        for c in allCafes {
-            let annotation = MKPointAnnotation()
-            annotation.title = c.name
-            annotation.coordinate = CLLocationCoordinate2DMake(c.coordinates.latitude, c.coordinates.longitude)
-            self.map.addAnnotation(annotation)
-            print("Added annotation \(annotation)")
-        }
-    }
- */
-    
     func createAnnotations() {
         print("CreateAnnotations()")
         for c in allCafes {

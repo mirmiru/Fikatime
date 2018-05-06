@@ -17,7 +17,6 @@ class SegmentedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
-        // Do any additional setup after loading the view.
     }
     
     func setUpViews() {
@@ -36,18 +35,6 @@ class SegmentedViewController: UIViewController {
     }
 
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
-        //When user clicks on segmentcontroller
         self.viewContainer.bringSubview(toFront: segmentedViews[sender.selectedSegmentIndex])
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

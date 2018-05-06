@@ -11,7 +11,8 @@ import FirebaseDatabase
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var allCafes = [Cafe]()
+    var allFoundCafes = [Cafe]()
+    var allRatings = [Double]()
     var ref: DatabaseReference!
     var databaseHandle: DatabaseHandle!
     
@@ -29,19 +30,21 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allCafes.count
+        return allFoundCafes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTable", for: indexPath)
-        cell.textLabel?.text = allCafes[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTable", for: indexPath) as UITableViewCell
+        if let name = allFoundCafes[indexPath.row].name,
+            let rating = allFoundCafes[indexPath.row].rating {
+            cell.textLabel?.text = "\(name) (\(rating) ★)"
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Prepare for segue to detail view
         let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
-        if let id = allCafes[indexPath.row].id {
+        if let id = allFoundCafes[indexPath.row].id {
             destination.cafeId = id
         }
         self.present(destination, animated: true, completion: nil)
@@ -50,7 +53,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func databaseListener(finished: @escaping () -> Void) {
         ref = Database.database().reference()
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
-            self.allCafes.removeAll()
+            self.allFoundCafes.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 var cafe = Cafe()
@@ -59,30 +62,42 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let dict = snap.value as? [String: Any] {
                     let name = dict["name"] as! String
                     cafe.name = name
-                    self.allCafes.append(cafe)
                 }
+                
+                self.loadRating(cafe: snap, finished: {
+                    print("loadRating()")
+                    let sum = self.allRatings.reduce(0) { $0 + $1 }
+                    let average = sum/Double(self.allRatings.count)
+                    cafe.rating = average.roundTo(decimals: 1)
+                    self.allFoundCafes.append(cafe)
+                    self.allRatings.removeAll()
+                    self.tableView.reloadData()
+                })
                 self.tableView.reloadData()
             }
             finished()
         })
     }
 
+    func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
+        Database.database().reference().child("ratings").child(cafe.key).observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                if let r = snap.value as? Double {
+                    self.allRatings.append(r)
+                } else {
+                    print("No rating found.")
+                }
+            }
+            finished()
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func sortData() {
-        allCafes.sort(by: { $0.name! < $1.name!})
+        allFoundCafes.sort(by: { $0.name! < $1.name!})
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

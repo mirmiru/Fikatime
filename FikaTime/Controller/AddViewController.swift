@@ -23,12 +23,12 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var locationButton: UILabel!
     
     @IBOutlet weak var iconWifi: UIButton!
     @IBOutlet weak var iconVeg: UIButton!
-    @IBOutlet weak var toiletIcon: UIButton!
+    @IBOutlet weak var iconToilet: UIButton!
     
-    //Cafe data
     var enteredName: String?
     var enteredReview: String?
     var enteredImage: UIImage?
@@ -39,8 +39,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     var lat: Double?
     var long: Double?
     var address: String?
-    
-    //Location
+
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
@@ -50,8 +49,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     let ref = Database.database().reference()
     let storage = Storage.storage()
-    
-    //Database
+
     let NODE_CAFES = "cafes"
     let NODE_IMAGES = "images"
     let NODE_RATINGS = "ratings"
@@ -99,6 +97,13 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     @IBAction func toiletPressed(_ sender: Any) {
+        if iconToilet.isChosen() {
+            iconToilet.setBackgroundImage(#imageLiteral(resourceName: "icon_toilet_1"), for: .selected)
+            hasToilet = true
+        } else {
+            iconToilet.setBackgroundImage(#imageLiteral(resourceName: "icon_toilet_0"), for: .normal)
+            hasToilet = false
+        }
     }
     
     // MARK: - MAP
@@ -118,25 +123,39 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Success getting current location.")
         if let manager = locations.last {
+            print("Manager")
             CLGeocoder().reverseGeocodeLocation(manager) { (placemarks, error) in
                 if let places = placemarks {
-                        let place = places[0]
-                        self.showLocationDetails(placemark: place)
+                    let place = places[0]
+                    self.showLocationDetails(placemark: place)
                 }
             }
         }
     }
     
     func showLocationDetails(placemark: CLPlacemark) {
+        print("showLocationDetails")
         locationManager.stopUpdatingLocation()
         
+        let street = placemark.thoroughfare ?? ""
+        let nr = placemark.subThoroughfare ?? ""
+        let city = placemark.locality ?? ""
+        let area = placemark.administrativeArea ?? ""
+        self.address = "\(street) \(nr), \(city), \(area)"
+        print(self.address)
+        self.locationLabel.text = self.address
+        
+        /*
         if let streetName = placemark.thoroughfare,
-            let streetNr = placemark.subThoroughfare,
+            //let streetNr = placemark.subThoroughfare,
             let locCity = placemark.locality,
             let adminArea = placemark.administrativeArea {
-                address = "\(streetName) \(streetNr), \(locCity), \(adminArea)"
-                locationLabel.text = self.address
+    
+                self.address = "\(street), \(city), \(area)"
+                print(self.address)
+                self.locationLabel.text = self.address
             }
+ */
             lat = placemark.location?.coordinate.latitude
             long = placemark.location?.coordinate.longitude
     }
@@ -200,9 +219,6 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         //Store name
         CAFE_ID.child(KEY_NAME).setValue(enteredName)
-        
-        //TEST - ID
-        print("Cafe ID: \(CAFE_ID.key)")
     
         //Store lat & long
         ref.child(NODE_CAFES).child(CAFE_ID.key).child(KEY_LAT).setValue(lat)
@@ -246,15 +262,5 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

@@ -28,11 +28,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
-        databaseListener()
+        //databaseListener()
+        print("VDL")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //testArray.removeAll()
+        print("VDA")
+        databaseListener()
     }
     
     //MARK: - DATABASE LISTENER
@@ -43,7 +46,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         ref = Database.database().reference()
         
         databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
-            self.testArray.removeAll()
+            //self.testArray.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 print("SNAP: \(snap.key)")
@@ -61,7 +64,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     //GET SUM n AVERAGE
                     let sum = self.allRatings.reduce(0) { $0 + $1 }
                     let average = sum/Double(self.allRatings.count)
-                    //cafe.rating = self.rating
                     cafe.rating = average.roundTo(decimals: 1)
                     self.allRatings.removeAll()
                     self.testArray.append(cafe)
@@ -75,7 +77,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func loadRating(cafe: DataSnapshot, finished: @escaping () -> ()) {
         Database.database().reference().child("ratings").child(cafe.key).observeSingleEvent(of: .value, with: { (snapshot) in
             for child in snapshot.children {
-                print("RATING TEST \(child)")
                 let snap = child as! DataSnapshot
                 if let r = snap.value as? Double {
                     self.rating = r
@@ -84,7 +85,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     print("No rating found.")
                 }
             }
-            print(self.allRatings.count)
             finished()
         })
     }
