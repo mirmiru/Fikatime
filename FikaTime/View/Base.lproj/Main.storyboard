@@ -68,13 +68,15 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Add" id="Xyd-cj-0QT">
+                                        <color key="tintColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="N0B-de-A1M" kind="popoverPresentation" identifier="segueAdd" popoverAnchorBarButtonItem="Xyd-cj-0QT" id="fVZ-Lz-Lus">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Search" id="nd1-ZC-ftE">
+                                    <barButtonItem title="Map/All cafes" id="nd1-ZC-ftE">
+                                        <color key="tintColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="K98-5x-Yet" kind="show" id="ynN-hC-Lch"/>
                                         </connections>
@@ -178,12 +180,8 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Main" id="Nwc-JC-tLg">
-                                        <connections>
-                                            <action selector="mainButtonClicked:" destination="TZh-kb-h8m" id="3X8-D4-8pH"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem title="Add review" id="yGw-13-Xdm">
+                                        <color key="tintColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="NwI-qV-fe1" kind="popoverPresentation" identifier="addReviewSegue" popoverAnchorBarButtonItem="yGw-13-Xdm" id="mYg-FS-cmA">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -273,7 +271,7 @@
                                 <rect key="frame" x="16" y="231" width="343" height="370"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dtf-Zd-giG">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write your review here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dtf-Zd-giG">
                                         <rect key="frame" x="8" y="45" width="327" height="112"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -282,26 +280,11 @@
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDc-jd-knm">
-                                        <rect key="frame" x="210" y="161" width="85" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Get location"/>
-                                        <connections>
-                                            <action selector="getLocation:" destination="N0B-de-A1M" eventType="touchUpInside" id="H5d-pw-t2g"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CafeName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcI-nj-OIM">
                                         <rect key="frame" x="8" y="8" width="194" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
                                         <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="GhF-dJ-OOA">
-                                        <rect key="frame" x="89" y="199" width="327" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GwV-XY-x2K">
@@ -369,7 +352,8 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Undo" id="QwB-HE-QC5">
+                                    <barButtonItem title="Cancel" id="QwB-HE-QC5">
+                                        <color key="tintColor" red="0.58431372550000005" green="0.36470588240000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="undoButtonClicked:" destination="NwI-qV-fe1" id="RXk-mk-Xzo"/>
                                         </connections>
@@ -383,7 +367,6 @@
                     <connections>
                         <outlet property="containerView" destination="Nb3-q6-TV7" id="4Jk-US-dv9"/>
                         <outlet property="imageView" destination="3ko-M0-2Ai" id="NjP-bV-6AK"/>
-                        <outlet property="locationLabel" destination="GhF-dJ-OOA" id="PKi-7l-pcS"/>
                         <outlet property="nameLabel" destination="fcI-nj-OIM" id="VRK-Y7-P15"/>
                         <outlet property="photoButton" destination="Lah-p4-Ww4" id="CB3-ld-14X"/>
                         <outlet property="ratingBar" destination="ris-5b-5Kd" id="mOK-u4-y3G"/>
@@ -423,7 +406,7 @@
                                 <rect key="frame" x="16" y="231" width="343" height="384"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rER-Z5-Gi3">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write your review here." translatesAutoresizingMaskIntoConstraints="NO" id="rER-Z5-Gi3">
                                         <rect key="frame" x="8" y="52" width="327" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -543,7 +526,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cp-Zy-1d7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No address fetched." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cp-Zy-1d7">
                                         <rect key="frame" x="8" y="190" width="327" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="No location fetched."/>

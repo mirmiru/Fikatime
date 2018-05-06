@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Cosmos
 
-class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -42,11 +42,12 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func setUp() {
+        reviewTextView.delegate = self
         saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
         saveButton.roundedCorners()
         photoButton.roundButton()
         nameLabel.text = cafeName
-        locationLabel.text = cafeLocation
+        //locationLabel.text = cafeLocation
     }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
@@ -60,6 +61,11 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
             imagePicker.sourceType = .savedPhotosAlbum
         }
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("Editing!")
+        reviewTextView.text = ""
     }
     
     var cachedImagePath: String {

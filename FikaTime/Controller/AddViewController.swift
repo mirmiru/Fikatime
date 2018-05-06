@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Cosmos
 
-class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var imageImageview: UIImageView!
     @IBOutlet weak var nameTextfield: UITextField!
@@ -69,11 +69,16 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     func setUp() {
+        reviewTextview.delegate = self
         photoButton.roundButton()
         containerView.bringSubview(toFront: saveButton)
         saveButton.roundedCorners()
         saveButton.center = CGPoint(x: containerView.bounds.size.width/2, y: containerView.bounds.size.height)
         containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        reviewTextview.text = ""
     }
     
     @IBAction func wifiPressed(_ sender: Any) {
