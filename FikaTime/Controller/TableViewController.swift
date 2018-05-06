@@ -24,7 +24,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         
         databaseListener {
-            self.sortData()
+            self.tableView.reloadData()
         }
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellTable")
     }
@@ -52,9 +52,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func databaseListener(finished: @escaping () -> Void) {
         ref = Database.database().reference()
-        databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
+        databaseHandle = ref.child("cafes").queryOrdered(byChild: "name").observe(.value, with: { (snapshot) in
             self.allFoundCafes.removeAll()
             for child in snapshot.children.allObjects {
+                print(child)
                 let snap = child as! DataSnapshot
                 var cafe = Cafe()
                 cafe.id = snap.key
@@ -65,7 +66,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 self.loadRating(cafe: snap, finished: {
-                    print("loadRating()")
                     let sum = self.allRatings.reduce(0) { $0 + $1 }
                     let average = sum/Double(self.allRatings.count)
                     cafe.rating = average.roundTo(decimals: 1)
@@ -73,7 +73,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.allRatings.removeAll()
                     self.tableView.reloadData()
                 })
-                self.tableView.reloadData()
             }
             finished()
         })
@@ -97,7 +96,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
     }
 
-    func sortData() {
-        allFoundCafes.sort(by: { $0.name! < $1.name!})
+    func sortData(array: [Cafe]) -> [Cafe] {
+        return array.sorted(by: { $0.name! < $1.name!})
     }
 }

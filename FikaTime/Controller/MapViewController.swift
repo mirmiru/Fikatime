@@ -30,7 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         map.delegate = self
         setUpMap()
         testFunc {
-            print("Doing more stuff")
+            print("Done")
         }
     }
     
@@ -59,7 +59,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func testFunc(finished: @escaping () -> Void) {
-        //ref = Database.database().reference()
         databaseHandle = ref.child("cafes").observe(.value, with: { (snapshot) in
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
@@ -70,13 +69,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let lat = dict["latitude"] as? Double,
                     let long = dict["longitude"] as? Double {
 
-                    //Get rating
                     self.loadRating(cafe: snap, finished: {
                         let cafe = Cafe(id: id, name: name, rating: self.rating, lat: lat, long: long)
-                        print("ADDING CAFE: \(cafe)")
                         self.allCafes.append(cafe)
-                        
-                        //Create annotations
                         self.createAnnotations()
                     })
                 } else {
@@ -88,7 +83,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func createAnnotations() {
-        print("CreateAnnotations()")
         for c in allCafes {
             let annotation = CustomAnnotation()
             annotation.title = c.name
@@ -98,7 +92,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annotation.id = c.id
             annotation.coordinate = CLLocationCoordinate2DMake(c.coordinates.latitude, c.coordinates.longitude)
             self.map.addAnnotation(annotation)
-            print("Added annotation \(annotation)")
         }
     }
     
@@ -122,32 +115,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if control == view.rightCalloutAccessoryView {
             clickedAnnotation = view.annotation as? CustomAnnotation
-            //performSegue(withIdentifier: "segueDetail", sender: self)
             
-            //Prepare for segue to detail view
             if let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailView") as? DetailViewController {
                 destination.cafeId = clickedAnnotation.id
                 self.present(destination, animated: true, completion: nil)
             }
         }
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueDetail" {
-            
-            /*
-            if let destination = segue.destination as? DetailViewController {
-                destination.cafeId = clickedAnnotation.id
-            }
- */
-        }
-    }
- */
 }
 
 class CustomAnnotation: MKPointAnnotation {
     var id: String?
 }
-
-

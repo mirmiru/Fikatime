@@ -18,7 +18,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //Firebase
     var ref: DatabaseReference!
-    //let ref = Database.database().reference()
     var databaseHandle: DatabaseHandle?
 
     @IBOutlet weak var tableView: UITableView!
@@ -28,13 +27,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.isNavigationBarHidden = true
         tableView.delegate = self
         tableView.dataSource = self
-        //databaseListener()
-        print("VDL")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //testArray.removeAll()
-        print("VDA")
         databaseListener()
     }
     
@@ -42,11 +37,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func databaseListener() {
         self.testArray.removeAll()
-        
+
         ref = Database.database().reference()
-        
         databaseHandle = ref.child("cafes").observe(.value) { (snapshot) in
-            //self.testArray.removeAll()
             for child in snapshot.children.allObjects {
                 let snap = child as! DataSnapshot
                 print("SNAP: \(snap.key)")
@@ -60,8 +53,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 self.loadRating(cafe: snap, finished: {
-
-                    //GET SUM n AVERAGE
                     let sum = self.allRatings.reduce(0) { $0 + $1 }
                     let average = sum/Double(self.allRatings.count)
                     cafe.rating = average.roundTo(decimals: 1)

@@ -143,7 +143,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.scrollView.addSubview(imageView)
         }
-        
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(testArray.count), height: scrollView.frame.size.height)
         scrollView.delegate = self
     }
@@ -163,7 +162,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
                     self.testArray.append(image)
-                    print(self.testArray)
                     self.setUpScrollView()
                 }
             }
@@ -193,13 +191,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Database.database().reference().child("images").child(self.cafeId).observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children {
                 if let snap = child as? DataSnapshot {
-                    print("SNAP: \(snap)")
-                    
                     if let url = snap.value as? String {
-                        print("URL \(url)")
-
                         self.downloadImage(from: url)
-                        
                         let storageRef = self.storage.reference(forURL: url)
                         storageRef.getData(maxSize: 1024*1024, completion: { (data, error) in
                             if error != nil {
@@ -207,7 +200,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             } else {
                                 if let image = UIImage(data: data!) {
                                     self.testArray.append(image)
-                                    print(self.testArray)
                                 }
                             }
                         })

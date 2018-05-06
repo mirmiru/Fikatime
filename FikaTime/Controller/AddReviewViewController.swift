@@ -47,7 +47,7 @@ class AddReviewViewController: UIViewController, UIImagePickerControllerDelegate
         saveButton.roundedCorners()
         photoButton.roundButton()
         nameLabel.text = cafeName
-        //locationLabel.text = cafeLocation
+        containerView.setShadow(color: UIColor.lightGray.cgColor, opacity: 1, offset: CGSize.zero, radius: 5)
     }
     
     @IBAction func cameraButtonClicked(_ sender: Any) {
